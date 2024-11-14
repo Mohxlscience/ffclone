@@ -1,0 +1,237 @@
+<div class="exchange-form-outer">
+	<h1>Lightning cryptocurrency exchange</h1>
+	<form class="exchange-form">
+		<div class="exchange-amounts" id="exchange_amount">
+			<div class="col">
+				<div class="wrap-header exch-header">
+					<header>Send</header>
+					<div class="ccy-name" id="select_ccyname_from"></div>
+				</div>
+				<div class="input-wabbr toleft">
+					<select id="select_currency_from" class="hidden">
+							<option label="separate">Popular currencies</option>
+																							<option  selected value="BTC" data-img="btc" data-network="BTC" data-shownetwork="0" data-coin="BTC" data-inactive="0" data-tag="">Bitcoin</option>
+																		<option  value="BSC" data-img="bsc" data-network="BSC" data-shownetwork="1" data-coin="BNB" data-inactive="0" data-tag="">BNB Smart Chain (BEP20)</option>
+																		<option  value="ETH" data-img="eth" data-network="ETH" data-shownetwork="0" data-coin="ETH" data-inactive="0" data-tag="">Ethereum</option>
+																		<option  value="USDT" data-img="usdt" data-network="ETH" data-shownetwork="1" data-coin="USDT" data-inactive="0" data-tag="">Tether (ERC20)</option>
+																		<option  value="USDTTRC" data-img="usdttrc" data-network="TRX" data-shownetwork="1" data-coin="USDT" data-inactive="0" data-tag="">Tether (TRC20)</option>
+																		<option  value="XMR" data-img="xmr" data-network="XMR" data-shownetwork="0" data-coin="XMR" data-inactive="0" data-tag="">Monero</option>
+																		<option label="separate">All currencies</option>
+																				<option  value="ZRX" data-img="zrx" data-network="ETH" data-shownetwork="1" data-coin="ZRX" data-inactive="0" data-tag="">0x (ERC20)</option>
+																		<option  value="AAVEETH" data-img="aaveeth" data-network="ETH" data-shownetwork="1" data-coin="AAVE" data-inactive="0" data-tag="">Aave (ERC20)</option>
+																		<option  value="APT" data-img="apt" data-network="APT" data-shownetwork="0" data-coin="APT" data-inactive="0" data-tag="">Aptos</option>
+																		<option  value="AVAX" data-img="avax" data-network="C-CHAIN" data-shownetwork="1" data-coin="AVAX" data-inactive="0" data-tag="">Avalanche (C-Chain)</option>
+																		<option  value="BNBOPBNB" data-img="bnbopbnb" data-network="OPBNB" data-shownetwork="1" data-coin="BNB" data-inactive="0" data-tag="">BNB (opBNB)</option>
+																		<option  value="BAT" data-img="bat" data-network="ETH" data-shownetwork="1" data-coin="BAT" data-inactive="0" data-tag="">Basic Attention (ERC20)</option>
+																		<option  value="BTT" data-img="btt" data-network="TRX" data-shownetwork="1" data-coin="BTT" data-inactive="0" data-tag="">BitTorrent</option>
+																		<option  value="BTCBSC" data-img="btcbsc" data-network="BSC" data-shownetwork="1" data-coin="BTC" data-inactive="1" data-tag="">Bitcoin (BEP20)</option>
+																		<option  value="BTCLN" data-img="btcln" data-network="LN" data-shownetwork="1" data-coin="BTC" data-inactive="0" data-tag="">Bitcoin (Lightning)</option>
+																		<option  value="BCH" data-img="bch" data-network="BCH" data-shownetwork="0" data-coin="BCH" data-inactive="0" data-tag="">Bitcoin Cash</option>
+																		<option  value="ADA" data-img="ada" data-network="ADA" data-shownetwork="0" data-coin="ADA" data-inactive="0" data-tag="">Cardano</option>
+																		<option  value="ADABSC" data-img="adabsc" data-network="BSC" data-shownetwork="1" data-coin="ADA" data-inactive="1" data-tag="">Cardano (BEP20)</option>
+																		<option  value="LINK" data-img="link" data-network="ETH" data-shownetwork="1" data-coin="LINK" data-inactive="0" data-tag="">Chainlink (ERC20)</option>
+																		<option  value="ATOM" data-img="atom" data-network="ATOM" data-shownetwork="0" data-coin="ATOM" data-inactive="0" data-tag="MEMO">Cosmos</option>
+																		<option  value="DAIBSC" data-img="daibsc" data-network="BSC" data-shownetwork="1" data-coin="DAI" data-inactive="0" data-tag="">DAI (BEP20)</option>
+																		<option  value="DAIETH" data-img="daieth" data-network="ETH" data-shownetwork="1" data-coin="DAI" data-inactive="0" data-tag="">DAI (ERC20)</option>
+																		<option  value="DAIMATIC" data-img="daimatic" data-network="POLYGON" data-shownetwork="1" data-coin="DAI" data-inactive="0" data-tag="">DAI (Polygon)</option>
+																		<option  value="DASH" data-img="dash" data-network="DASH" data-shownetwork="0" data-coin="DASH" data-inactive="0" data-tag="">Dash</option>
+																		<option  value="MANAETH" data-img="manaeth" data-network="ETH" data-shownetwork="1" data-coin="MANA" data-inactive="0" data-tag="">Decentraland (ERC20)</option>
+																		<option  value="DOGE" data-img="doge" data-network="DOGE" data-shownetwork="0" data-coin="DOGE" data-inactive="0" data-tag="">Dogecoin</option>
+																		<option  value="EOS" data-img="eos" data-network="EOS" data-shownetwork="0" data-coin="EOS" data-inactive="1" data-tag="MEMO">EOS</option>
+																		<option  value="ETHARBITRUM" data-img="etharbitrum" data-network="ARBITRUM" data-shownetwork="1" data-coin="ETH" data-inactive="1" data-tag="">Ethereum (Arbitrum)</option>
+																		<option  value="ETHBSC" data-img="ethbsc" data-network="BSC" data-shownetwork="1" data-coin="ETH" data-inactive="0" data-tag="">Ethereum (BEP20)</option>
+																		<option  value="ETHBASE" data-img="ethbase" data-network="BASE" data-shownetwork="1" data-coin="ETH" data-inactive="0" data-tag="">Ethereum (Base)</option>
+																		<option  value="ETHOP" data-img="ethop" data-network="OPTIMISM" data-shownetwork="1" data-coin="ETH" data-inactive="0" data-tag="">Ethereum (Optimism)</option>
+																		<option  value="ETHZKSYNC" data-img="ethzksync" data-network="ZKSYNC" data-shownetwork="1" data-coin="ETH" data-inactive="1" data-tag="">Ethereum (ZkSync)</option>
+																		<option  value="ETC" data-img="etc" data-network="ETC" data-shownetwork="0" data-coin="ETC" data-inactive="0" data-tag="">Ethereum Classic</option>
+																		<option  value="FTM" data-img="ftm" data-network="FTM" data-shownetwork="0" data-coin="FTM" data-inactive="0" data-tag="">Fantom</option>
+																		<option  value="KCS" data-img="kcs" data-network="KCC" data-shownetwork="1" data-coin="KCS" data-inactive="0" data-tag="">KuCoin Token</option>
+																		<option  value="LTC" data-img="ltc" data-network="LTC" data-shownetwork="0" data-coin="LTC" data-inactive="0" data-tag="">Litecoin</option>
+																		<option  value="MKR" data-img="mkr" data-network="ETH" data-shownetwork="1" data-coin="MKR" data-inactive="0" data-tag="">Maker (ERC20)</option>
+																		<option  value="PAXGETH" data-img="paxgeth" data-network="ETH" data-shownetwork="1" data-coin="PAXG" data-inactive="0" data-tag="">PAX Gold (ERC20)</option>
+																		<option  value="CAKE" data-img="cake" data-network="BSC" data-shownetwork="1" data-coin="CAKE" data-inactive="0" data-tag="">PancakeSwap (BEP20)</option>
+																		<option  value="USDP" data-img="usdp" data-network="ETH" data-shownetwork="1" data-coin="USDP" data-inactive="0" data-tag="">Pax Dollar (ERC20)</option>
+																		<option  value="DOT" data-img="dot" data-network="DOT" data-shownetwork="0" data-coin="DOT" data-inactive="0" data-tag="">Polkadot</option>
+																		<option  value="POL" data-img="pol" data-network="POLYGON" data-shownetwork="1" data-coin="POL" data-inactive="0" data-tag="">Polygon</option>
+																		<option  value="POLETH" data-img="poleth" data-network="ETH" data-shownetwork="1" data-coin="POL" data-inactive="0" data-tag="">Polygon (ERC20)</option>
+																		<option  value="XRP" data-img="xrp" data-network="XRP" data-shownetwork="0" data-coin="XRP" data-inactive="0" data-tag="Destination tag">Ripple</option>
+																		<option  value="SHIBBSC" data-img="shibbsc" data-network="BSC" data-shownetwork="1" data-coin="SHIB" data-inactive="1" data-tag="">SHIBA INU (BEP20)</option>
+																		<option  value="SHIB" data-img="shib" data-network="ETH" data-shownetwork="1" data-coin="SHIB" data-inactive="0" data-tag="">SHIBA INU (ERC20)</option>
+																		<option  value="SOL" data-img="sol" data-network="SOL" data-shownetwork="0" data-coin="SOL" data-inactive="0" data-tag="">Solana</option>
+																		<option  value="XLM" data-img="xlm" data-network="XLM" data-shownetwork="0" data-coin="XLM" data-inactive="0" data-tag="MEMO">Stellar Lumens</option>
+																		<option  value="USDTARBITRUM" data-img="usdtarbitrum" data-network="ARBITRUM" data-shownetwork="1" data-coin="USDT" data-inactive="0" data-tag="">Tether (Arbitrum)</option>
+																		<option  value="USDTBSC" data-img="usdtbsc" data-network="BSC" data-shownetwork="1" data-coin="USDT" data-inactive="0" data-tag="">Tether (BEP20)</option>
+																		<option  value="USDTMATIC" data-img="usdtmatic" data-network="POLYGON" data-shownetwork="1" data-coin="USDT" data-inactive="0" data-tag="">Tether (Polygon)</option>
+																		<option  value="USDTSOL" data-img="usdtsol" data-network="SOL" data-shownetwork="1" data-coin="USDT" data-inactive="0" data-tag="">Tether (Solana)</option>
+																		<option  value="XTZ" data-img="xtz" data-network="XTZ" data-shownetwork="0" data-coin="XTZ" data-inactive="0" data-tag="">Tezos</option>
+																		<option  value="TON" data-img="ton" data-network="TON" data-shownetwork="0" data-coin="TON" data-inactive="0" data-tag="MEMO/Comment">Toncoin</option>
+																		<option  value="TRX" data-img="trx" data-network="TRX" data-shownetwork="0" data-coin="TRX" data-inactive="0" data-tag="">Tron</option>
+																		<option  value="TUSD" data-img="tusd" data-network="ETH" data-shownetwork="1" data-coin="TUSD" data-inactive="0" data-tag="">TrueUSD (ERC20)</option>
+																		<option  value="TWTBSC" data-img="twtbsc" data-network="BSC" data-shownetwork="1" data-coin="TWT" data-inactive="0" data-tag="MEMO">Trust Wallet Token (BEP20)</option>
+																		<option  value="USDCARBITRUM" data-img="usdcarbitrum" data-network="ARBITRUM" data-shownetwork="1" data-coin="USDC" data-inactive="0" data-tag="">USD Coin (Arbitrum)</option>
+																		<option  value="USDCBSC" data-img="usdcbsc" data-network="BSC" data-shownetwork="1" data-coin="USDC" data-inactive="1" data-tag="">USD Coin (BEP20)</option>
+																		<option  value="USDCETH" data-img="usdceth" data-network="ETH" data-shownetwork="1" data-coin="USDC" data-inactive="0" data-tag="">USD Coin (ERC20)</option>
+																		<option  value="USDCMATIC" data-img="usdcmatic" data-network="POLYGON" data-shownetwork="1" data-coin="USDC" data-inactive="1" data-tag="">USD Coin (Polygon)</option>
+																		<option  value="USDCSOL" data-img="usdcsol" data-network="SOL" data-shownetwork="1" data-coin="USDC" data-inactive="0" data-tag="">USD Coin (Solana)</option>
+																		<option  value="VET" data-img="vet" data-network="VET" data-shownetwork="0" data-coin="VET" data-inactive="0" data-tag="">VeChain</option>
+																		<option  value="WBNBBSC" data-img="wbnbbsc" data-network="BSC" data-shownetwork="1" data-coin="WBNB" data-inactive="0" data-tag="">Wrapped BNB (BEP20)</option>
+																		<option  value="WBNBOPBNB" data-img="wbnbopbnb" data-network="OPBNB" data-shownetwork="1" data-coin="WBNB" data-inactive="1" data-tag="">Wrapped BNB (opBNB)</option>
+																		<option  value="WETHARBITRUM" data-img="wetharbitrum" data-network="ARBITRUM" data-shownetwork="1" data-coin="WETH" data-inactive="0" data-tag="">Wrapped ETH (Arbitrum)</option>
+																		<option  value="WETHETH" data-img="wetheth" data-network="ETH" data-shownetwork="1" data-coin="WETH" data-inactive="0" data-tag="">Wrapped ETH (ERC20)</option>
+																		<option  value="WSOL" data-img="wsol" data-network="SOL" data-shownetwork="1" data-coin="WSOL" data-inactive="0" data-tag="">Wrapped SOL (Solana)</option>
+																		<option  value="ZEC" data-img="zec" data-network="ZEC" data-shownetwork="0" data-coin="ZEC" data-inactive="0" data-tag="">Zcash</option>
+										</select>
+					<input class="input-amount" autocomplete="off" type="text" value="" id="select_amount_from" data-dir="from" maxlength="18">
+					<div id="select_maxmin_from" class="hint maxmin"></div>
+					<span id="select_hinterror_from" class="hint error"></span>
+					<label id="select_label_from"></label>
+					<div class="exch-info">
+						<div class="input-rate" id="select_rate_from"></div>
+						<div class="rateusd"><span id="rate_usd_from">&nbsp;</span></div>
+					</div>
+				</div>
+			</div>
+			<div class="col-middle">
+				<button class="btn-reverse" id="btn_reverse">
+					<span id="btn_reverse_from" class="btn-reverse-exch ico"></span>
+					<span id="btn_reverse_to" class="btn-reverse-receive ico"></span>
+				</button>
+			</div>
+			<div class="col">
+				<div class="wrap-header exch-header">
+					<header>Receive</header>
+					<div class="ccy-name" id="select_ccyname_to"></div>
+				</div>
+				<div class="input-wabbr toright">
+					<select id="select_currency_to" class="hidden">
+							<option label="separate">Popular currencies</option>
+																							<option  value="BTC" data-img="btc" data-network="BTC" data-shownetwork="0" data-coin="BTC" data-inactive="0" data-tag="">Bitcoin</option>
+																		<option  value="BSC" data-img="bsc" data-network="BSC" data-shownetwork="1" data-coin="BNB" data-inactive="0" data-tag="">BNB Smart Chain (BEP20)</option>
+																		<option  value="ETH" data-img="eth" data-network="ETH" data-shownetwork="0" data-coin="ETH" data-inactive="0" data-tag="">Ethereum</option>
+																		<option  value="USDT" data-img="usdt" data-network="ETH" data-shownetwork="1" data-coin="USDT" data-inactive="0" data-tag="">Tether (ERC20)</option>
+																		<option  selected value="USDTTRC" data-img="usdttrc" data-network="TRX" data-shownetwork="1" data-coin="USDT" data-inactive="0" data-tag="">Tether (TRC20)</option>
+																		<option  value="XMR" data-img="xmr" data-network="XMR" data-shownetwork="0" data-coin="XMR" data-inactive="0" data-tag="">Monero</option>
+																		<option label="separate">All currencies</option>
+																				<option  value="ZRX" data-img="zrx" data-network="ETH" data-shownetwork="1" data-coin="ZRX" data-inactive="0" data-tag="">0x (ERC20)</option>
+																		<option  value="AAVEETH" data-img="aaveeth" data-network="ETH" data-shownetwork="1" data-coin="AAVE" data-inactive="0" data-tag="">Aave (ERC20)</option>
+																		<option  value="APT" data-img="apt" data-network="APT" data-shownetwork="0" data-coin="APT" data-inactive="0" data-tag="">Aptos</option>
+																		<option  value="AVAX" data-img="avax" data-network="C-CHAIN" data-shownetwork="1" data-coin="AVAX" data-inactive="0" data-tag="">Avalanche (C-Chain)</option>
+																		<option  value="BNBOPBNB" data-img="bnbopbnb" data-network="OPBNB" data-shownetwork="1" data-coin="BNB" data-inactive="1" data-tag="">BNB (opBNB)</option>
+																		<option  value="BAT" data-img="bat" data-network="ETH" data-shownetwork="1" data-coin="BAT" data-inactive="0" data-tag="">Basic Attention (ERC20)</option>
+																		<option  value="BTT" data-img="btt" data-network="TRX" data-shownetwork="1" data-coin="BTT" data-inactive="0" data-tag="">BitTorrent</option>
+																		<option  value="BTCBSC" data-img="btcbsc" data-network="BSC" data-shownetwork="1" data-coin="BTC" data-inactive="0" data-tag="">Bitcoin (BEP20)</option>
+																		<option  value="BTCLN" data-img="btcln" data-network="LN" data-shownetwork="1" data-coin="BTC" data-inactive="0" data-tag="">Bitcoin (Lightning)</option>
+																		<option  value="BCH" data-img="bch" data-network="BCH" data-shownetwork="0" data-coin="BCH" data-inactive="0" data-tag="">Bitcoin Cash</option>
+																		<option  value="ADA" data-img="ada" data-network="ADA" data-shownetwork="0" data-coin="ADA" data-inactive="0" data-tag="">Cardano</option>
+																		<option  value="ADABSC" data-img="adabsc" data-network="BSC" data-shownetwork="1" data-coin="ADA" data-inactive="0" data-tag="">Cardano (BEP20)</option>
+																		<option  value="LINK" data-img="link" data-network="ETH" data-shownetwork="1" data-coin="LINK" data-inactive="0" data-tag="">Chainlink (ERC20)</option>
+																		<option  value="ATOM" data-img="atom" data-network="ATOM" data-shownetwork="0" data-coin="ATOM" data-inactive="0" data-tag="MEMO">Cosmos</option>
+																		<option  value="DAIBSC" data-img="daibsc" data-network="BSC" data-shownetwork="1" data-coin="DAI" data-inactive="0" data-tag="">DAI (BEP20)</option>
+																		<option  value="DAIETH" data-img="daieth" data-network="ETH" data-shownetwork="1" data-coin="DAI" data-inactive="0" data-tag="">DAI (ERC20)</option>
+																		<option  value="DAIMATIC" data-img="daimatic" data-network="POLYGON" data-shownetwork="1" data-coin="DAI" data-inactive="0" data-tag="">DAI (Polygon)</option>
+																		<option  value="DASH" data-img="dash" data-network="DASH" data-shownetwork="0" data-coin="DASH" data-inactive="0" data-tag="">Dash</option>
+																		<option  value="MANAETH" data-img="manaeth" data-network="ETH" data-shownetwork="1" data-coin="MANA" data-inactive="0" data-tag="">Decentraland (ERC20)</option>
+																		<option  value="DOGE" data-img="doge" data-network="DOGE" data-shownetwork="0" data-coin="DOGE" data-inactive="0" data-tag="">Dogecoin</option>
+																		<option  value="EOS" data-img="eos" data-network="EOS" data-shownetwork="0" data-coin="EOS" data-inactive="1" data-tag="MEMO">EOS</option>
+																		<option  value="ETHARBITRUM" data-img="etharbitrum" data-network="ARBITRUM" data-shownetwork="1" data-coin="ETH" data-inactive="0" data-tag="">Ethereum (Arbitrum)</option>
+																		<option  value="ETHBSC" data-img="ethbsc" data-network="BSC" data-shownetwork="1" data-coin="ETH" data-inactive="0" data-tag="">Ethereum (BEP20)</option>
+																		<option  value="ETHBASE" data-img="ethbase" data-network="BASE" data-shownetwork="1" data-coin="ETH" data-inactive="1" data-tag="">Ethereum (Base)</option>
+																		<option  value="ETHOP" data-img="ethop" data-network="OPTIMISM" data-shownetwork="1" data-coin="ETH" data-inactive="0" data-tag="">Ethereum (Optimism)</option>
+																		<option  value="ETHZKSYNC" data-img="ethzksync" data-network="ZKSYNC" data-shownetwork="1" data-coin="ETH" data-inactive="0" data-tag="">Ethereum (ZkSync)</option>
+																		<option  value="ETC" data-img="etc" data-network="ETC" data-shownetwork="0" data-coin="ETC" data-inactive="0" data-tag="">Ethereum Classic</option>
+																		<option  value="FTM" data-img="ftm" data-network="FTM" data-shownetwork="0" data-coin="FTM" data-inactive="0" data-tag="">Fantom</option>
+																		<option  value="KCS" data-img="kcs" data-network="KCC" data-shownetwork="1" data-coin="KCS" data-inactive="0" data-tag="">KuCoin Token</option>
+																		<option  value="LTC" data-img="ltc" data-network="LTC" data-shownetwork="0" data-coin="LTC" data-inactive="0" data-tag="">Litecoin</option>
+																		<option  value="MKR" data-img="mkr" data-network="ETH" data-shownetwork="1" data-coin="MKR" data-inactive="0" data-tag="">Maker (ERC20)</option>
+																		<option  value="PAXGETH" data-img="paxgeth" data-network="ETH" data-shownetwork="1" data-coin="PAXG" data-inactive="0" data-tag="">PAX Gold (ERC20)</option>
+																		<option  value="CAKE" data-img="cake" data-network="BSC" data-shownetwork="1" data-coin="CAKE" data-inactive="0" data-tag="">PancakeSwap (BEP20)</option>
+																		<option  value="USDP" data-img="usdp" data-network="ETH" data-shownetwork="1" data-coin="USDP" data-inactive="0" data-tag="">Pax Dollar (ERC20)</option>
+																		<option  value="DOT" data-img="dot" data-network="DOT" data-shownetwork="0" data-coin="DOT" data-inactive="0" data-tag="">Polkadot</option>
+																		<option  value="POL" data-img="pol" data-network="POLYGON" data-shownetwork="1" data-coin="POL" data-inactive="0" data-tag="">Polygon</option>
+																		<option  value="POLETH" data-img="poleth" data-network="ETH" data-shownetwork="1" data-coin="POL" data-inactive="0" data-tag="">Polygon (ERC20)</option>
+																		<option  value="XRP" data-img="xrp" data-network="XRP" data-shownetwork="0" data-coin="XRP" data-inactive="0" data-tag="Destination tag">Ripple</option>
+																		<option  value="SHIBBSC" data-img="shibbsc" data-network="BSC" data-shownetwork="1" data-coin="SHIB" data-inactive="0" data-tag="">SHIBA INU (BEP20)</option>
+																		<option  value="SHIB" data-img="shib" data-network="ETH" data-shownetwork="1" data-coin="SHIB" data-inactive="0" data-tag="">SHIBA INU (ERC20)</option>
+																		<option  value="SOL" data-img="sol" data-network="SOL" data-shownetwork="0" data-coin="SOL" data-inactive="0" data-tag="">Solana</option>
+																		<option  value="XLM" data-img="xlm" data-network="XLM" data-shownetwork="0" data-coin="XLM" data-inactive="0" data-tag="MEMO">Stellar Lumens</option>
+																		<option  value="USDTARBITRUM" data-img="usdtarbitrum" data-network="ARBITRUM" data-shownetwork="1" data-coin="USDT" data-inactive="0" data-tag="">Tether (Arbitrum)</option>
+																		<option  value="USDTBSC" data-img="usdtbsc" data-network="BSC" data-shownetwork="1" data-coin="USDT" data-inactive="0" data-tag="">Tether (BEP20)</option>
+																		<option  value="USDTMATIC" data-img="usdtmatic" data-network="POLYGON" data-shownetwork="1" data-coin="USDT" data-inactive="0" data-tag="">Tether (Polygon)</option>
+																		<option  value="USDTSOL" data-img="usdtsol" data-network="SOL" data-shownetwork="1" data-coin="USDT" data-inactive="0" data-tag="">Tether (Solana)</option>
+																		<option  value="XTZ" data-img="xtz" data-network="XTZ" data-shownetwork="0" data-coin="XTZ" data-inactive="0" data-tag="">Tezos</option>
+																		<option  value="TON" data-img="ton" data-network="TON" data-shownetwork="0" data-coin="TON" data-inactive="0" data-tag="MEMO/Comment">Toncoin</option>
+																		<option  value="TRX" data-img="trx" data-network="TRX" data-shownetwork="0" data-coin="TRX" data-inactive="0" data-tag="">Tron</option>
+																		<option  value="TUSD" data-img="tusd" data-network="ETH" data-shownetwork="1" data-coin="TUSD" data-inactive="0" data-tag="">TrueUSD (ERC20)</option>
+																		<option  value="TWTBSC" data-img="twtbsc" data-network="BSC" data-shownetwork="1" data-coin="TWT" data-inactive="0" data-tag="MEMO">Trust Wallet Token (BEP20)</option>
+																		<option  value="USDCARBITRUM" data-img="usdcarbitrum" data-network="ARBITRUM" data-shownetwork="1" data-coin="USDC" data-inactive="0" data-tag="">USD Coin (Arbitrum)</option>
+																		<option  value="USDCBSC" data-img="usdcbsc" data-network="BSC" data-shownetwork="1" data-coin="USDC" data-inactive="0" data-tag="">USD Coin (BEP20)</option>
+																		<option  value="USDCETH" data-img="usdceth" data-network="ETH" data-shownetwork="1" data-coin="USDC" data-inactive="0" data-tag="">USD Coin (ERC20)</option>
+																		<option  value="USDCMATIC" data-img="usdcmatic" data-network="POLYGON" data-shownetwork="1" data-coin="USDC" data-inactive="0" data-tag="">USD Coin (Polygon)</option>
+																		<option  value="USDCSOL" data-img="usdcsol" data-network="SOL" data-shownetwork="1" data-coin="USDC" data-inactive="0" data-tag="">USD Coin (Solana)</option>
+																		<option  value="VET" data-img="vet" data-network="VET" data-shownetwork="0" data-coin="VET" data-inactive="0" data-tag="">VeChain</option>
+																		<option  value="WBNBBSC" data-img="wbnbbsc" data-network="BSC" data-shownetwork="1" data-coin="WBNB" data-inactive="0" data-tag="">Wrapped BNB (BEP20)</option>
+																		<option  value="WBNBOPBNB" data-img="wbnbopbnb" data-network="OPBNB" data-shownetwork="1" data-coin="WBNB" data-inactive="1" data-tag="">Wrapped BNB (opBNB)</option>
+																		<option  value="WETHARBITRUM" data-img="wetharbitrum" data-network="ARBITRUM" data-shownetwork="1" data-coin="WETH" data-inactive="0" data-tag="">Wrapped ETH (Arbitrum)</option>
+																		<option  value="WETHETH" data-img="wetheth" data-network="ETH" data-shownetwork="1" data-coin="WETH" data-inactive="0" data-tag="">Wrapped ETH (ERC20)</option>
+																		<option  value="WSOL" data-img="wsol" data-network="SOL" data-shownetwork="1" data-coin="WSOL" data-inactive="0" data-tag="">Wrapped SOL (Solana)</option>
+																		<option  value="ZEC" data-img="zec" data-network="ZEC" data-shownetwork="0" data-coin="ZEC" data-inactive="0" data-tag="">Zcash</option>
+										</select>
+					<input class="input-amount" autocomplete="off" type="text" value="" id="select_amount_to" data-dir="to" maxlength="18">
+					<div id="select_maxmin_to" class="hint maxmin"></div>
+					<span id="select_hinterror_to" class="hint error"></span>
+					<label id="select_label_to"></label>
+					<div class="exch-info">
+						<div class="input-rate" id="select_rate_to"></div>
+						<div class="rateusd"><span id="rate_usd_to">&nbsp;</span></div>
+					</div>
+				</div>
+			</div>
+		</div>
+				<div class="exchange-address-wrap">
+			<div class="exchange-wallet active center">
+				<div class="wrap-header">
+					<header>Destination</header>
+				</div>
+				<div class="field">
+					<textarea class="nonextra hidden" type="text" id="receive_wallet_hidden" autocomplete="off"></textarea>
+					<textarea class="nonextra" type="text" required id="receive_wallet" autocomplete="off"></textarea>
+					<span id="receive_wallet_error" class="hint error">Invalid address</span>
+					<div class="funcbuttons">
+						<button type="button" class="ico paste hoverhl" id="wallet_paste" title="Paste"></button>
+											<button type="button" class="ico scanqr hoverhl" id="wallet_scanqr" title="Scan QR code"></button>
+						<button type="button" class="ico close hoverhl" id="wallet_clear"></button>
+					</div>
+								</div>
+			</div>
+			<div class="exchange-wallet exchange-wallet-extra center" id="wallet_extra_outer">
+				<div class="wrap-header">
+					<header id="receive_extraid_label">Destination Tag (optional)</header>
+				</div>
+				<div class="field">
+					<input class="nonextra" type="text" value="" required id="receive_extraid" autocomplete="off">
+					<span id="receive_extraid_error" class="hint error">Invalid</span>
+					<div class="funcbuttons"><button type="button" class="ico paste hoverhl none" id="extraid_paste"></button><button type="button" class="ico close hoverhl" id="extraid_clear"></button></div>
+				</div>
+			</div>
+		</div>
+				<div class="exchange-wrapflex">
+						<div class="exchange-option">
+				<header>Order type</header>
+				<div class="exchange-option-inner">
+					<label class="radioselect">
+						<input type="radio" name="select_type_from" value="fixed" id="fixed_type">
+						<span><font>Fixed rate (1.0%)</font><i></i></span>
+					</label><label class="radioselect">
+						<input type="radio" name="select_type_from" value="float" id="float_type" checked>
+						<span><font>Float rate (0.5%)</font><i></i></span>
+					</label>
+				</div>
+				<span id="type_difference" class="exchange-option-diff"><div class="exchange-option-diff-inner"><i>?</i><font>What is the difference?</font></div></span>
+			</div>
+						<div class="exchange-button center">
+				<button id="exchange_submit" class="exchange-submit disabled"><span>Exchange now</span></button>
+			</div>
+		</div>
+			<div class="exchange-terms">By using the site and creating an exchange, you agree to the FixedFloat's <a href="terms-of-service.html">Terms of Services</a> and <a href="privacy-policy.html">Privacy Policy</a></div>
+		</form>
+</div>

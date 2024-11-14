@@ -1,0 +1,92 @@
+<div class="exchange-amounts" id="exchange_amount">
+    <div class="col">
+        <div class="wrap-header exch-header">
+            <header>Send</header>
+            <div class="ccy-name" id="select_ccyname_from"></div>
+        </div>
+        <div class="input-wabbr toleft">
+            <!-- Menu des crypto caché initialement -->
+            <div id="crypto-menu" class="ui-select-outer with-search hidden-label" style="display: none;">
+                <label class="ui-select">
+                    <div class="ui-select-value">
+                        <div class="coin-ticker"><span class="name">BTC</span></div>
+                        <div class="coin-ico svgcoin btc"></div>
+                        <div class="coin-outer"><span class="coin-name">Bitcoin</span></div>
+                    </div>
+                    <div class="ui-select-arrow"></div>
+                    <div class="ui-select-search">
+                        <span class="ui-select-search-ico ico"></span>
+                        <div class="ui-select-search-inner"><input type="text" placeholder="Type a currency or ticker"></div>
+                    </div>
+                </label>
+                <div class="ui-select-list">
+                    <ul>
+                        <li class="ui-select-separate">Popular currencies</li>
+                        <li data-value="BTC" class="ui-select-option"><span class="name">BTC</span> - Bitcoin</li>
+                        <li data-value="BSC" class="ui-select-option"><span class="name">BSC</span> - BNB Smart Chain</li>
+                        <li data-value="ETH" class="ui-select-option"><span class="name">ETH</span> - Ethereum</li>
+                        <li data-value="USDT" class="ui-select-option"><span class="name">USDT</span> - Tether (ERC20)</li>
+                        <li class="ui-select-separate">All currencies</li>
+                    </ul>
+                </div>
+            </div>
+            <select id="select_currency_from" class="hidden">
+                <!-- Options -->
+                <option label="separate">Popular currencies</option>
+                <option selected="" value="BTC" data-img="btc" data-network="BTC" data-shownetwork="0" data-coin="BTC" data-inactive="0" data-tag="">Bitcoin</option>
+                <option value="BSC" data-img="bsc" data-network="BSC" data-shownetwork="1" data-coin="BNB" data-inactive="0" data-tag="">BNB Smart Chain (BEP20)</option>
+                <option value="ETH" data-img="eth" data-network="ETH" data-shownetwork="0" data-coin="ETH" data-inactive="0" data-tag="">Ethereum</option>
+                <option value="USDT" data-img="usdt" data-network="ETH" data-shownetwork="1" data-coin="USDT" data-inactive="0" data-tag="">Tether (ERC20)</option>
+                <option value="USDTTRC" data-img="usdttrc" data-network="TRX" data-shownetwork="1" data-coin="USDT" data-inactive="0" data-tag="">Tether (TRC20)</option>
+                <option value="XMR" data-img="xmr" data-network="XMR" data-shownetwork="0" data-coin="XMR" data-inactive="0" data-tag="">Monero</option>
+                <option label="separate">All currencies</option>
+            </select>
+            <input class="input-amount" autocomplete="off" type="text" id="select_amount_from" data-dir="from" maxlength="18">
+            <div id="select_maxmin_from" class="hint maxmin"></div>
+            <span id="select_hinterror_from" class="hint error"></span>
+            <label id="select_label_from" data-count="3">
+                <span class="coin-img svgcoin btc"></span>
+                <span class="coin-name"><span class="name">BTC</span></span>
+            </label>
+            <div class="exch-info">
+                <div class="input-rate" id="select_rate_from"></div>
+                <div class="rateusd"><span id="rate_usd_from">&nbsp;</span></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-middle">
+        <button class="btn-reverse" id="btn_reverse">
+            <span id="btn_reverse_from" class="btn-reverse-exch ico"></span>
+            <span id="btn_reverse_to" class="btn-reverse-receive ico"></span>
+        </button>
+    </div>
+    <div class="col">
+        <div class="wrap-header exch-header">
+            <header>Receive</header>
+            <div class="ccy-name" id="select_ccyname_to"></div>
+        </div>
+        <div class="input-wabbr toright">
+            <select id="select_currency_to" class="hidden">
+                    <option label="separate">Popular currencies</option>
+                                                                                    
+                                                                            <option value="BTC" data-img="btc" data-network="BTC" data-shownetwork="0" data-coin="BTC" data-inactive="1" data-tag="">Bitcoin</option>
+                                                                            <option value="BSC" data-img="bsc" data-network="BSC" data-shownetwork="1" data-coin="BNB" data-inactive="0" data-tag="">BNB Smart Chain (BEP20)</option>
+                                                                            <option selected="" value="ETH" data-img="eth" data-network="ETH" data-shownetwork="0" data-coin="ETH" data-inactive="0" data-tag="">Ethereum</option>
+                                                                            <option value="USDT" data-img="usdt" data-network="ETH" data-shownetwork="1" data-coin="USDT" data-inactive="0" data-tag="">Tether (ERC20)</option>
+                                                                            <option  value="USDTTRC" data-img="usdttrc" data-network="TRX" data-shownetwork="1" data-coin="USDT" data-inactive="0" data-tag="">Tether (TRC20)</option>
+                                                                            <option value="XMR" data-img="xmr" data-network="XMR" data-shownetwork="0" data-coin="XMR" data-inactive="0" data-tag="">Monero</option>
+                                                                            <option label="separate">All currencies</option>      
+                                                                            </select>
+            <input class="input-amount" autocomplete="off" type="text" value="" id="select_amount_to" data-dir="to" maxlength="18">
+            <div id="select_maxmin_to" class="hint maxmin"></div>
+            <span id="select_hinterror_to" class="hint error"></span>
+            <label id="select_label_to" data-count="3"><span class="coin-img svgcoin eth"></span><span class="coin-name"><span class="name">ETH</span></span></label>
+            <div class="exch-info">
+                <div class="input-rate" id="select_rate_to"></div>
+                <div class="rateusd"><span id="rate_usd_to">&nbsp;</span></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
