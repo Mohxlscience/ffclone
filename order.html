@@ -607,7 +607,7 @@ document.addEventListener("DOMContentLoaded", function () {
 						<div class="order-extra-details more none" id="order_details_more" bis_skin_checked="1">
 							</div>
 					</section>
-									<section class="order-emergency clrfix active" id="section_emergency">
+									<!-- <section class="order-emergency clrfix active" id="section_emergency">
 	<h3>I sent funds for exchange, but my order has expired. What should I do?</h3>
 	<p>
 		We have not received your transaction yet, but you can choose what to do if funds arrive at this address within 24 hours. Pick one of the following:		</p>
@@ -626,17 +626,56 @@ document.addEventListener("DOMContentLoaded", function () {
 			</div>
 					<button class="btn std" id="emergency_submit" data-exchange="Continue the exchange" data-refund="Make a refund"></button>
 		</div>
+	</section> -->
+	<section class="ordertimelineclrfix" id="sectiontimeline">
+		<div class="timelinecontainer" bis_skin_checked="1">
+			<ol id="timeline_steps" class="clrfixexpired" data-value="eth">
+				<li id="timelinenew"><div bis_skin_checked="1"><span class="icodeposit2"></span><label></label><span class="icodeposit"></span></div></li>
+				
+						</ol>
+		</div>
 	</section>
-									<section class="order-timeline clrfix" id="section_timeline">
-						<div class="timeline-container" bis_skin_checked="1">
-							
-						</div>
-					</section>
 					<section class="order-info">
 						<section class="order-info-known">
 							<h3>What do you need to know?</h3>
 							<div class="order-note" bis_skin_checked="1"><em class="icospeed">­</em><span>You only need <strong>1</strong> confirmation of the Bitcoin blockchain for the exchange</span></div>
 							<style>
+							.timelinecontainer{
+    text-align: center;
+}
+	.icodeposit {
+    width: 700px; /* Ajustez selon la taille souhaitée */
+    height: 200px;
+    background-image: url('img/tout.png'); /* Remplacez par le chemin de votre image */
+    background-size: contain;
+    background-repeat: no-repeat;
+    display: inline-block;
+}
+.icodeposit2 {
+    width: 180px; /* Ajustez selon la taille souhaitée */
+    height: 190px;
+    background-image: url('img/waiting.png'); /* Remplacez par le chemin de votre image */
+    background-size: contain;
+    background-repeat: no-repeat;
+    display: inline-block;
+
+    /* Ajout de l'animation */
+    animation: brightnessPulse 2s infinite; /* Durée de 2s, animation infinie */
+}
+
+/* Définition de l'animation */
+@keyframes brightnessPulse {
+    0% {
+        filter: brightness(1); /* Luminosité normale */
+    }
+    50% {
+        filter: brightness(1.5); /* Augmentation de la luminosité */
+    }
+    100% {
+        filter: brightness(1); /* Retour à la luminosité normale */
+    }
+}
+
 								.icospeed {
     width: 40px; /* Ajustez selon la taille souhaitée */
     height: 35px;

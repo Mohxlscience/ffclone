@@ -1,0 +1,1594 @@
+main .exchange-form-outer>h1 {
+    font-size: 2.6em;
+    font-weight: 600;
+    text-align: center;
+    text-indent: 0;
+    max-width: 19em;
+    display: block;
+    margin: 0 auto 1.8em
+}
+
+div.exchange-form-outer {
+    margin: 4.4em auto 0;
+    max-width: 860px;
+    padding-bottom: 16em;
+    position: relative;
+    z-index: 2
+}
+
+.exchange-form-outer h1 {
+    text-align: center;
+    text-indent: 0
+}
+
+.exchange-form-outer .col {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.exchange-form-outer .col-middle {
+    box-sizing: border-box;
+    text-align: center;
+    z-index: 12;
+    padding: .3em 1.1em 0;
+    display: flex;
+    align-items: center
+}
+
+.exchange-form-outer .col-middle-separate {
+    background-color: #fff;
+    margin-bottom: .313em;
+    margin-left: 50%;
+    opacity: .2;
+    width: 3px;
+    -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+    transform: translateX(-50%)
+}
+
+.col-middle-separate.before-btn {
+    height: 45px;
+    margin-bottom: .313em
+}
+
+.btn-reverse + .col-middle-separate {
+    height: 19px;
+    margin-top: 7px
+}
+
+.exchange-amounts .col-middle-separate {
+    height: 100%
+}
+
+.exchange-form>div {
+    position: relative;
+    margin: 2.2em auto 0;
+    width: 100%
+}
+
+.exchange-form>div.exchange-option,.exchange-form>div.exchange-button {
+    max-width: 32em
+}
+
+.exchange-form>div.exchange-choose {
+    padding-bottom: 0;
+    margin-bottom: 0
+}
+
+.exchange-form>div.exchange-amounts {
+    margin: 0 0 2.2em;
+    display: flex;
+    z-index: 102
+}
+
+.exchange-wrapflex {
+    display: flex;
+    justify-content: space-between
+}
+
+.exchange-wrapflex>.exchange-option {
+    display: flex;
+    align-items: center
+}
+
+.exchange-wrapflex>.exchange-option header {
+    padding-right: .9em;
+    font-weight: 600
+}
+
+.exchange-form div.exchange-address-wrap {
+    width: 100%;
+    display: flex
+}
+
+.exchange-form div.exchange-wallet {
+    padding: 0;
+    max-height: 0;
+    opacity: 0;
+    pointer-events: none;
+    -webkit-transition: all .3s ease;
+    -o-transition: all .3s ease;
+    transition: all .3s ease;
+    will-change: opacity,max-height;
+    z-index: 100
+}
+
+.exchange-form div.exchange-wallet.noanim {
+    -webkit-transition: all 0s ease;
+    -o-transition: all 0s ease;
+    transition: all 0s ease
+}
+
+.exchange-form div.exchange-wallet.active {
+    max-height: 30em;
+    opacity: 1;
+    pointer-events: auto
+}
+
+.exchange-wallet-extra>.dinput {
+    padding-top: 0
+}
+
+.exchange-form div.exchange-wallet:not(.exchange-wallet-extra) {
+    z-index: 101;
+    flex: 1
+}
+
+.exchange-form div.exchange-wallet-extra {
+    margin-left: 0;
+    width: 0;
+    overflow: hidden
+}
+
+.exchange-form div.exchange-wallet-extra.active {
+    margin-left: 1em;
+    width: 30%
+}
+
+.exchange-form div.exchange-wallet-extra.ovisible {
+    overflow: visible
+}
+
+.exchange-form div.show-address-book + div.exchange-wallet-extra.active {
+    margin-left: 0;
+    width: 0;
+    max-height: 0;
+    opacity: 0;
+    pointer-events: none
+}
+
+.exchange-wallet.extrafields .nonextra {
+    display: none
+}
+
+.exchange-wallet.extrafields .extra {
+    display: block
+}
+.funcbuttons {
+    bottom: .3em;
+    display: flex;
+    justify-content: center;
+    min-width: 2.4em;
+    position: absolute;
+    right: .3em;
+    top: .3em
+}
+
+.dinput>input[readonly] ~ .funcbuttons {
+    display: none
+}
+
+.exchange-wallet textarea:not(.hidden):valid .funcbuttons>.close,.exchange-wallet textarea:not(.hidden):not(:valid) .funcbuttons>*:not(.close):not(.close),.exchange-wallet input:not(.hidden):valid .funcbuttons>.close,.exchange-wallet input:not(.hidden):not(:valid) .funcbuttons>*:not(.close):not(.close),.exchange-wallet.show-address-book .field>textarea:not(.hidden) ~ .funcbuttons>.close {
+    display: flex
+}
+
+.exchange-wallet .funcbuttons>.none,.exchange-wallet textarea:not(.hidden):valid ~ .funcbuttons>*:not(.close),.exchange-wallet textarea:not(.hidden):not(:valid) ~ .funcbuttons>.close,.exchange-wallet input:not(.hidden):valid ~ .funcbuttons>*:not(.close),.exchange-wallet input:not(.hidden):not(:valid) ~ .funcbuttons>.close,.exchange-wallet.show-address-book .field>textarea ~ .funcbuttons>*:not(.close) {
+    display: none
+}
+
+.funcbuttons>.close:after {
+    font-size: .7em
+}
+
+.funcbuttons>button {
+    background-color: transparent;
+    border: 0;
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    font-size: 1.05em;
+    justify-content: center;
+    align-items: center;
+    padding: .3em .5em;
+    width: 100%
+}
+
+.funcbuttons>button.extraid {
+    display: none;
+    padding: .3em .1em;
+    opacity: .7
+}
+
+.funcbuttons>button.extraid:hover,.exchange-wallet.extrafields .funcbuttons>button.extraid {
+    opacity: 1
+}
+
+.funcbuttons>button.extraid.active {
+    display: inline-block
+}
+
+.funcbuttons>button.scanqr:after,.funcbuttons>button.paste:after,.funcbuttons>button.addressbook:after {
+    font-size: 1.4em
+}
+
+.addresss-list-wrap {
+    display: none;
+    left: 0;
+    overflow: hidden;
+    position: absolute;
+    top: 100%;
+    width: 100%
+}
+
+.addresss-list {
+    background-color: #21284b;
+    border-radius: 0 0 .5rem .5rem;
+    position: relative;
+    text-align: left;
+    width: 100%;
+    max-height: 370px;
+    overflow-x: hidden;
+    overflow-y: auto
+}
+
+.show-address-book>.field>.addresss-list-wrap {
+    display: block
+}
+
+.show-address-book>.field>.addresss-list-wrap>.addresss-list.loading {
+    min-height: 3.1875em
+}
+
+.show-address-book>.field>.addresss-list-wrap>.addresss-list.loading:empty:after {
+    animation: .7s ease 0s normal none infinite running loadshadow;
+    background-color: transparent;
+    border-radius: 50%;
+    content: "";
+    font-size: 1.5em;
+    height: .35em;
+    left: 50%;
+    margin-left: -1em;
+    padding: 0;
+    position: absolute;
+    top: 50%;
+    transform: translate(-275%,-50%);
+    width: .35em;
+    will-change: box-shadow
+}
+
+.show-address-book>.field>.addresss-list-wrap>.addresss-list:not(.loading):empty:after {
+    color: rgba(255,255,255,0.2);
+    content: attr(data-emptylist);
+    display: block;
+    padding: 1em;
+    text-align: center
+}
+
+.exchange-wallet.show-address-book>.field>textarea {
+    background-color: #21284b;
+    border-radius: .5rem .5rem 0 0
+}
+
+.addresss-list>.row-address {
+    align-items: center;
+    cursor: pointer;
+    display: flex;
+    padding: .75em 1.05em
+}
+
+.addresss-list>.row-separate {
+    color: rgba(255,255,255,0.25);
+    padding: .75em 1.05em .25em
+}
+
+.addresss-list>.row-separate>span {
+    font-size: .875em
+}
+
+.addresss-list>.row-address:hover {
+    background-color: #0e161b
+}
+
+.addresss-list:before {
+    background-color: rgba(255,255,255,0.04);
+    content: "";
+    height: 1px;
+    left: 1em;
+    position: absolute;
+    right: .8em;
+    top: 0
+}
+
+.addresss-list>.row-address .tag {
+    margin-left: .4em;
+    color: #7aceff;
+    font-weight: 500
+}
+
+label.addressbook-favorite {
+    cursor: pointer;
+    margin-right: .4em;
+    font-size: 1.2em;
+    color: #008FDF
+}
+
+label.addressbook-favorite>input[type="checkbox"] {
+    visibility: hidden;
+    position: absolute;
+    z-index: -100
+}
+
+label.addressbook-favorite>.ico.star {
+    display: block
+}
+
+label.addressbook-favorite.active>.ico.star:after {
+    content: "\e235"
+}
+
+label.addressbook-favorite:hover>.ico.star {
+    color: #fff
+}
+
+label.addressbook-favorite:not(.active):active>.ico.star:after {
+    color: #008FDF;
+    content: "\e235"
+}
+
+label.addressbook-favorite.active:active>.ico.star:after {
+    color: #008FDF;
+    content: "\e234"
+}
+
+.exchange-form>div.exchange-wallet input {
+}
+
+.exchange-form>div.exchange-wallet input[readonly] {
+}
+
+.exchange-form>div.exchange-wallet input.with-extra {
+    padding-right: 3.5em;
+    padding-left: 0;
+    text-indent: 3.5em
+}
+
+.exchange-form>div.exchange-wallet input.with-extra:not(:focus):valid {
+    text-indent: 0
+}
+
+.wrap-header {
+    padding: 0 1.2em .4em
+}
+
+.exch-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end
+}
+
+.exchange-amounts header,.exchange-wallet header,.exchange-amounts .ccy-name {
+    font-size: .9em;
+    text-align: left;
+    -webkit-transition: color .3s ease;
+    -o-transition: color .3s ease;
+    transition: color .3s ease;
+    will-change: color;
+    white-space: nowrap;
+    overflow: hidden;
+    font-weight: 500
+}
+
+.exchange-wallet header {
+    color: #ccc
+}
+
+.exchange-display {
+    position: relative
+}
+
+.exchange-rateusd-wrap {
+    display: inline-block;
+    float: right;
+    font-weight: normal;
+    padding: .6em 0 0
+}
+
+.exchange-rateusd-wrap>span {
+    color: #fff;
+    cursor: default;
+    display: inline-block;
+    line-height: 1.2;
+    opacity: .7;
+    white-space: nowrap
+}
+
+.exchange-rateusd-wrap>span:hover {
+    border-color: transparent
+}
+
+.exchange-rateusd-wrap .pseudo-hint:after {
+    font-size: .6em;
+    left: auto;
+    right: 0;
+    -webkit-transform: none;
+    -ms-transform: none;
+    -o-transform: none;
+    transform: none
+}
+
+.exchange-rateusd-wrap .pseudo-hint:before {
+    border-color: transparent transparent #151e24 transparent;
+    left: 50%;
+    margin-left: -7px
+}
+
+.exchange-rateusd-wrap .pseudo-hint:hover:before,.exchange-rateusd-wrap .pseudo-hint:hover:after {
+    display: none
+}
+
+.exchange-option-inner {
+    display: inline-block
+}
+
+.exchange-option-inner label.radioselect {
+    margin: 0;
+    position: relative;
+    width: 50%
+}
+
+.exchange-option-inner label.radioselect.disabled {
+    pointer-events: none;
+    opacity: .5
+}
+
+.exchange-option-inner label.radioselect:last-of-type {
+    margin-right: 0;
+    margin-left: 0
+}
+
+.exchange-form>div.exchange-button {
+    margin-top: 1.1em
+}
+
+button.exchange-submit {
+    background-color: #fff;
+    border-radius: .5em;
+    border: 0;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 1em;
+    overflow: hidden;
+    height: 3.575em;
+    padding: 0;
+    -webkit-transition: opacity .4s ease;
+    -o-transition: opacity .4s ease;
+    transition: opacity .4s ease;
+    will-change: opacity
+}
+
+button.exchange-submit.disabled {
+}
+
+.exchange-option-inner,button.exchange-submit {
+}
+
+.exchange-option-inner {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    display: flex;
+    min-width: 24.9em
+}
+
+button.exchange-submit>span {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    align-items: center;
+    justify-content: center;
+    background-color: #008FDF;
+    color: #fff;
+    display: flex;
+    font-size: 1em;
+    font-weight: 600;
+    height: 100%;
+    padding: .73em 3em
+}
+
+button.exchange-submit.loading {
+    opacity: .6
+}
+
+button.exchange-submit>span:before {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    content: "";
+    border-color: #fff #fff transparent transparent;
+    border-radius: 1em;
+    border-style: solid;
+    border-width: 2px;
+    display: inline-block;
+    height: .75em;
+    margin-left: -1.15em;
+    margin-right: .4em;
+    opacity: 0;
+    width: .75em;
+    -webkit-transition: opacity .3s ease;
+    -o-transition: opacity .3s ease;
+    transition: opacity .3s ease;
+    -webkit-animation: 1.5s linear normal none infinite running spin;
+    -o-animation: 1.5s linear normal none infinite running spin;
+    animation: 1.5s linear normal none infinite running spin
+}
+
+button.exchange-submit.loading>span:before {
+    opacity: 1
+}
+
+.exchange-option i.hint-wrap {
+    left: .1em;
+    position: absolute;
+    top: .7em;
+    z-index: 1
+}
+
+.exchange-option i.hint-wrap.onleft {
+    right: .1em;
+    left: auto
+}
+
+.ui-select-list sup,.input-wabbr .coin-name>sup {
+    display: inline-flex;
+    align-items: center;
+    border-radius: .3em;
+    padding: .2em .3em;
+    margin-top: .1em;
+    color: #000
+}
+
+.ui-select-list sup:before,.input-wabbr .coin-name>sup:after {
+    font-family: "Icons";
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1;
+    text-align: center;
+    font-size: 1.2em
+}
+
+.ui-select-list sup:before {
+    margin-right: .15em
+}
+
+.input-wabbr .coin-name>sup:after {
+    margin-left: .15em
+}
+
+.ui-select-list sup>span {
+    line-height: .9;
+    font-weight: 500
+}
+
+.coin-ticker {
+    float: right;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    order: 2;
+    justify-content: center;
+    min-height: 2em
+}
+
+.coin-ticker>.name {
+    font-size: .875em;
+    font-weight: 600
+}
+
+.coin-outer {
+    align-items: center;
+    display: flex;
+    height: 1.5em;
+    flex: 1
+}
+
+.coin-outer .coin-name {
+    font-weight: 500
+}
+
+.coin-outer .coin-reserve {
+    display: block;
+    font-size: .7em;
+    height: 50%;
+    line-height: 1;
+    padding-top: .3em;
+    display: none
+}
+
+.exchange-choose .ui-select {
+    -webkit-transition: color .3s ease;
+    -o-transition: color .3s ease;
+    transition: color .3s ease;
+    will-change: color
+}
+
+.input-wabbr .ui-select-outer .coin-ico {
+    background-size: auto 100%;
+    float: left;
+    height: 1.8em;
+    margin-right: .6em;
+    text-align: center;
+    width: 1.8em
+}
+
+.input-wabbr .ui-select-list .ui-select-option {
+    padding: .5em 1em;
+    border-bottom: 0;
+    border-top: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative
+}
+
+.input-wabbr .ui-select-list .ui-select-option:after {
+    content: "";
+    display: block;
+    position: absolute;
+    left: 1em;
+    right: 1em;
+    height: 1px;
+    background-color: rgba(255,255,255,0.04);
+    bottom: 0;
+    width: auto;
+    font-size: inherit
+}
+
+.input-wabbr .ui-select-list .ui-select-option[data-inactive="1"]>* {
+    opacity: .2
+}
+
+.input-wabbr .ui-select-list li {
+    border-top: 1px solid rgba(255,255,255,0.06);
+    border-bottom: 0
+}
+
+.input-wabbr .ui-select-list li:first-of-type {
+    border-top: 0
+}
+
+.input-wabbr,.exchange-wallet .field {
+    margin: .2em 0 0
+}
+
+.input-wabbr {
+    position: relative;
+    -webkit-transition: color .3s ease;
+    -o-transition: color .3s ease;
+    transition: color .3s ease;
+    will-change: color
+}
+
+.input-wabbr:before {
+    background: rgba(0,0,0,0.5);
+    content: "";
+    display: block;
+    position: absolute;
+    pointer-events: none;
+    border: 1px solid;
+    width: 100%
+}
+
+.input-wabbr:before,.input-wabbr>input {
+    box-sizing: border-box;
+    border-radius: .5rem;
+    font-size: 1.625em;
+    height: 2.2em;
+    width: 100%
+}
+
+.input-wabbr>input {
+    background: transparent;
+    border: 1px solid transparent;
+    color: inherit;
+    padding: .3em 4.4em .3em .7em;
+    position: relative;
+    width: 100%;
+    will-change: opacity;
+    z-index: 10;
+    -webkit-transition: opacity .1s ease;
+    -o-transition: opacity .1s ease;
+    transition: opacity .1s ease
+}
+
+.input-wabbr>input:focus {
+    border-radius: .2rem .2rem 0 0
+}
+
+.input-wabbr>input:focus ~ .exch-info {
+    opacity: 0
+}
+
+.input-wabbr>input[disabled],.exchange-wallet textarea[readonly],.exchange-wallet input[readonly] {
+    opacity: .6
+}
+
+.input-wabbr>label {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+    align-items: center;
+    cursor: pointer;
+    display: flex;
+    font-size: 1.6em;
+    height: 2.15em;
+    padding-right: .6em;
+    position: absolute;
+    right: 0;
+    top: 0;
+    white-space: nowrap;
+    z-index: 11
+}
+
+.input-wabbr>label.disabled {
+    pointer-events: none
+}
+
+.input-wabbr>label:hover {
+    opacity: .8
+}
+
+.input-wabbr.toleft>label {
+    right: 0
+}
+
+.input-wabbr>label:after {
+    content: "";
+    border-bottom-color: transparent;
+    border-left-color: transparent;
+    border-right-color: transparent;
+    border-style: solid;
+    border-width: .27em .208em;
+    display: inline-block;
+    vertical-align: middle;
+    -webkit-transform: translateY(28%);
+    -ms-transform: translateY(28%);
+    -o-transform: translateY(28%);
+    transform: translateY(28%);
+    margin-left: .2em
+}
+
+.input-wabbr>label.disabled:after {
+    opacity: 0
+}
+
+.input-wabbr>label:before {
+    border-left: .06em solid;
+    border-left: 1px solid;
+    height: 1.8em;
+    margin-right: .4em;
+    opacity: .4
+}
+
+.input-wabbr>label img {
+    height: 1.145em;
+    vertical-align: middle
+}
+
+.input-wabbr>label>* {
+}
+
+.input-wabbr.toleft .coin-img {
+}
+
+.input-wabbr.toright .coin-img {
+    margin-right: .229em
+}
+
+.input-wabbr>.ui-select-outer {
+    align-items: stretch;
+    font-size: 1em;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 1000
+}
+
+.input-wabbr>.ui-select-outer>.ui-select-list {
+    border: 0;
+    position: relative;
+    height: 100%;
+    border-radius: 0 0 .4em .4em;
+    box-sizing: border-box
+}
+
+.input-wabbr>.ui-select-outer>.ui-select-list:before {
+    content: "";
+    height: 1px;
+    position: absolute;
+    display: block;
+    left: 1em;
+    right: 1em;
+    top: 0;
+    background-color: rgba(255,255,255,0.2);
+    z-index: 1;
+    pointer-events: none
+}
+
+.input-wabbr>.ui-select-outer>.ui-select-list>ul {
+    max-height: none;
+    max-height: 30em;
+    background-color: #21284b;
+    padding-top: .3em
+}
+
+.input-wabbr>.ui-select-outer>.ui-select {
+    background-color: #21284b;
+    border-radius: .4em .4em 0 0;
+    border: 0;
+    height: 3.575em;
+    min-height: 3em;
+    padding: 0
+}
+
+.input-wabbr>.ui-select-outer .ui-select-search-inner {
+    margin-left: 2.8125em
+}
+
+.input-wabbr>.ui-select-outer .ui-select-search {
+    padding: 0 2.4em 0 0
+}
+
+.input-wabbr>.ui-select-outer .ui-select-search-ico {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    float: left;
+    font-size: 1.1em;
+    height: 100%;
+    margin-right: 0;
+    padding: .7em .8em;
+    width: 2.5em;
+    display: flex;
+    align-items: center
+}
+
+.input-wabbr>.ui-select-outer .ui-select-arrow:after {
+    border-width: 0;
+    content: "\e10d";
+    font-family: "Icons";
+    font-size: .7em;
+    height: auto
+}
+
+.input-wabbr>.ui-select-outer .ui-select-arrow {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    align-items: center;
+    bottom: 0;
+    display: flex;
+    padding: 0 .8em 0;
+    right: 0;
+    top: 0;
+    -webkit-transform: translateY(0);
+    -ms-transform: translateY(0);
+    -o-transform: translateY(0);
+    transform: translateY(0)
+}
+
+.input-wabbr.toleft>.ui-select-outer .ui-select-arrow {
+}
+
+.exch-info {
+    color: #fff;
+    box-sizing: border-box;
+    opacity: .7;
+    padding: .7em 1.2em 0;
+    height: 1.5em;
+    will-change: opacity;
+    pointer-events: none;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    z-index: -1;
+    -webkit-transition: opacity .2s ease;
+    -o-transition: opacity .2s ease;
+    transition: opacity .2s ease
+}
+
+.exch-info .input-rate {
+    text-align: left
+}
+
+.exch-info .rateusd {
+}
+
+.exch-info .input-rate,.exch-info .rateusd {
+    font-size: .8em
+}
+
+.input-wabbr.error>input ~ .exch-info {
+    opacity: 0
+}
+
+.input-rate .btn-text {
+    color: inherit;
+    font-size: inherit;
+    padding: 0;
+    white-space: nowrap
+}
+
+.input-rate .btn-text:hover {
+    text-decoration: none
+}
+
+.input-rate .btn-text>span:not(.lightning) {
+    border-bottom: 1px dashed
+}
+
+.input-rate .btn-text:hover>span {
+    border-bottom-color: transparent
+}
+
+.input-rate .btn-text:hover>span.lightning {
+    filter: brightness(150%)
+}
+
+.hint.maxmin>.maxmin-value {
+    background-color: #252848;
+    background-color: #0f101b;
+    background: rgba(0,0,0,0.5);
+    border: 1px solid;
+    border: 0;
+    color: inherit;
+    cursor: pointer;
+    white-space: nowrap;
+    display: inline-block;
+    padding: .6em;
+    font-size: .875em;
+    border-radius: .5rem
+}
+
+.input-wabbr>.ui-select-outer .ui-select-search input {
+    border: none
+}
+
+.input-wabbr .ui-select-outer.active ~ input,.input-wabbr .ui-select-outer.active ~ label {
+    opacity: 0;
+    z-index: 1
+}
+
+.input-wabbr .hint.maxmin {
+    background-color: transparent;
+    border-radius: 0 0 .2rem .2rem;
+    border: 0;
+    box-shadow: none;
+    color: inherit;
+    left: 0;
+    padding: 0 .8em;
+    pointer-events: auto;
+    right: 0;
+    text-shadow: none;
+    top: 3.664em;
+    width: auto
+}
+
+.input-wabbr.toright .hint.maxmin {
+    text-align: right
+}
+
+.input-wabbr>input ~ .hint.error .maxmin-value {
+    border-bottom-color: transparent
+}
+
+.input-wabbr:not(.error) input:not(.error):focus ~ .hint.maxmin {
+    opacity: 1;
+    visibility: visible
+}
+
+.input-wabbr .hint.maxmin:before {
+    content: none
+}
+
+.input-wabbr .hint.maxmin span.prefix {
+    color: #949494;
+    margin-right: .3em
+}
+
+.hint.maxmin>.maxmin-value:first-of-type {
+    margin-right: .8em
+}
+
+.input-wabbr .hint.maxmin>.maxmin-value:hover>span:not(.prefix) {
+    text-decoration: underline
+}
+
+body.select-priority #fc_frame.fc-widget-small,body.select-priority .hint.error {
+    z-index: 0
+}
+
+.ui-select-list sup {
+    font-size: .525em;
+    top: 0
+}
+
+.exchange-wallet .field {
+    position: relative;
+    border-radius: .5rem;
+    margin: .2em 0 0
+}
+
+.exchange-wallet:not(.active) .field {
+    overflow: hidden
+}
+
+.exchange-wallet .hidden {
+    position: absolute;
+    height: 0;
+    min-height: 0 !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important
+}
+
+.exchange-wallet textarea,.exchange-wallet input[type="text"] {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    background: rgba(0,0,0,0.5);
+    border-radius: .5rem;
+    border: 1px solid transparent;
+    color: inherit;
+    font-size: 1.1em;
+    line-height: 1;
+    padding: 1.05em 2.4em 1.05em 1em;
+    height: 3.25em;
+    width: 100%;
+    resize: none;
+    display: block;
+    overflow: hidden
+}
+
+.exchange-wallet textarea[readonly],.exchange-wallet textarea:valid {
+    font-family: monospace
+}
+
+.exchange-wallet textarea[readonly] ~ .funcbuttons {
+    display: none
+}
+
+.exchange-wallet textarea.multi {
+    padding: .55em 2.4em .55em 1em
+}
+
+.exchange-wallet textarea[data-size="1_min"] {
+    font-size: 1.1em;
+    padding: 1.1em 2.7em 1.1em 17em;
+    min-height: 3.6363636em
+}
+
+.exchange-wallet textarea[data-size="2"] {
+    padding: .475em 2.4em .475em 1em
+}
+
+.exchange-wallet textarea[data-size="2_min"] {
+    font-size: 1.1em;
+    padding: .53em 2.7em .53em .7em;
+    min-height: 3.6363636em
+}
+
+.exchange-wallet textarea[data-size="3"] {
+    font-size: 1.1em;
+    padding: .53em 2.7em .53em .7em;
+    min-height: 4.734849em
+}
+
+.exchange-wallet .hint {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    left: 0;
+    width: 100%
+}
+
+.exchange-wallet textarea.error ~ .hint,.exchange-wallet input.error ~ .hint {
+    opacity: 1;
+    visibility: visible
+}
+
+button.btn-reverse {
+    background: none;
+    border: 0;
+    color: #fff;
+    cursor: pointer;
+    font-size: 1.1em;
+    height: 2.25em;
+    position: relative;
+    width: 2.25em
+}
+
+button.btn-reverse>span {
+    display: block;
+    padding: 0;
+    -webkit-transition: color .3s ease;
+    -o-transition: color .3s ease;
+    transition: color .3s ease;
+    will-change: color;
+    position: relative
+}
+
+button.btn-reverse>span.btn-reverse-exch {
+    transform: translate(0.25em,0.2em)
+}
+
+button.btn-reverse>span.btn-reverse-receive {
+    transform: translate(-0.25em,-0.2em) rotate(180deg)
+}
+
+button.btn-reverse>.hidden {
+    left: auto;
+    top: auto
+}
+
+.exchange-option i.hint-wrap {
+}
+
+.exchange-option .hint {
+}
+
+.exchange-option i.hint-wrap>.hint {
+    left: auto;
+    max-width: calc(50vw - 17em);
+    right: 31px;
+    width: 14em
+}
+
+.exchange-option i.hint-wrap>.hint:before {
+    border-color: transparent transparent transparent #151e24;
+    left: auto;
+    right: -14px
+}
+
+.exchange-option i.hint-wrap.onleft>.hint {
+    right: auto;
+    left: 31px
+}
+
+.exchange-option i.hint-wrap.onleft>.hint:before {
+    border-color: transparent transparent transparent #151e24;
+    border-color: transparent #151e24 transparent transparent;
+    right: auto;
+    left: -14px
+}
+
+.input-wabbr.error:before,.exchange-wallet textarea.error,.exchange-wallet input.error {
+    border-color: #a90707
+}
+
+.input-wabbr.error>input ~ .hint.error:not(:empty),.dinput>input.error ~ .hint {
+    opacity: 1;
+    visibility: visible
+}
+
+.input-wabbr>.ui-select-outer.active ~ .hint.error:not(:empty) {
+    opacity: 0;
+    visibility: hidden
+}
+
+.input-wabbr>input ~ .hint.error,.exchange-wallet textarea ~ .hint,.exchange-wallet input ~ .hint {
+    background-color: #ae5555;
+    border-radius: .3em;
+    border-radius: .5rem;
+    box-shadow: none;
+    font-size: .875em;
+    color: #fff;
+    left: .9em;
+    padding: .6em 1.2em .6em 2.4em;
+    text-shadow: none;
+    min-height: 2.5em;
+    top: 3.2em;
+    width: 100%;
+    -webkit-transform: none;
+    -ms-transform: none;
+    -o-transform: none;
+    transform: none
+}
+
+.input-wabbr input ~ .hint.error:after,.exchange-wallet textarea ~ .hint.error:after,.exchange-wallet input ~ .hint.error:after {
+    align-items: center;
+    background-color: #fff;
+    border-radius: 50%;
+    color: #ae5555;
+    content: "!";
+    display: flex;
+    font-size: 1em;
+    font-weight: bold;
+    height: 1.3em;
+    justify-content: center;
+    left: .6em;
+    position: absolute;
+    text-align: center;
+    top: 50%;
+    width: 1.3em;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%)
+}
+
+.input-wabbr.error input ~ .hint.error,.exchange-wallet input.error ~ .hint,.exchange-wallet textarea.error ~ .hint {
+    background-color: #a90707;
+    pointer-events: auto;
+    line-height: 1.4em
+}
+
+.input-wabbr>input ~ .hint.error,.exchange-wallet textarea ~ .hint,.exchange-wallet input ~ .hint {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    width: auto
+}
+
+.exchange-wallet textarea ~ .hint,.exchange-wallet input ~ .hint {
+    top: 100%;
+    margin-top: -0.1rem
+}
+
+.input-wabbr>input ~ .hint.error .maxmin-value {
+    background-color: transparent;
+    border: 0;
+    border-bottom: 1px dotted;
+    color: #fff;
+    cursor: pointer;
+    white-space: nowrap;
+    font-size: 1em
+}
+
+.input-wabbr>input ~ .hint.error .maxmin-value:hover {
+    border-bottom-color: transparent
+}
+
+.input-wabbr>input[disabled] ~ .hint.error .maxmin-value {
+    pointer-events: none
+}
+
+.input-wabbr.error>input ~ .hint:before,.exchange-wallet textarea ~ .hint:before,.exchange-wallet input ~ .hint:before {
+    border-color: transparent transparent #a90707 transparent;
+    left: .7em;
+    top: -0.5em;
+    margin-left: 0;
+    margin-top: -0.6em;
+    border-width: .6em
+}
+
+.input-wabbr.error.offline>input,.input-wabbr.error.offline>label {
+    opacity: .4
+}
+
+.input-wabbr.error.offline:before {
+    border-color: #3a3f43
+}
+
+.input-wabbr.error.offline input ~ .hint.error {
+    background-color: #3a3f43;
+    padding: .6em 2.4em .6em 1.2em
+}
+
+.input-wabbr.error.offline input ~ .hint.error {
+}
+
+.input-wabbr.error.offline input ~ .hint.error:before {
+    border-color: transparent transparent #3a3f43 transparent;
+    left: auto;
+    right: 1em
+}
+
+.input-wabbr.error.offline input ~ .hint.error:after {
+    right: .4em;
+    left: auto;
+    content: "\e10F";
+    font-family: 'Icons';
+    background-color: transparent;
+    color: #fff;
+    font-weight: normal;
+    font-size: 1.2em
+}
+
+.input-wabbr.locked:after {
+    content: "\e12e";
+    font-family: "Icons";
+    font-size: 1em;
+    pointer-events: none;
+    position: absolute;
+    top: .7em;
+    display: none
+}
+
+.input-wabbr.toleft.locked:after {
+    right: 100%;
+    padding-right: .5rem
+}
+
+.input-wabbr.toright.locked:after {
+    left: 100%;
+    padding-left: .5rem
+}
+
+div.exchange-form-outer {
+    width: 100%
+}
+
+.input-wabbr.toright .hint.maxmin {
+    text-align: left
+}
+
+.input-wabbr>.ui-select-outer .ui-select-search input {
+    font-size: 1em;
+    padding: .3em 0;
+    border: 1px solid transparent;
+    box-sizing: border-box
+}
+
+.input-wabbr.toleft>.ui-select-outer .ui-select-search input {
+    text-align: left
+}
+
+.input-wabbr>label:before {
+}
+
+.input-wabbr>label>* {
+}
+
+.input-wabbr>label>.coin-img {
+    background-position: center center;
+    margin-right: .229em;
+    min-width: 1.146em
+}
+
+.input-wabbr>label>.coin-name {
+    flex: 1;
+    font-size: .75em;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start
+}
+
+.input-wabbr .coin-name>.name {
+    line-height: 1;
+    font-weight: 500
+}
+
+.input-wabbr .coin-name>sup {
+    line-height: 1;
+    top: 0
+}
+
+.input-wabbr>label[data-count="4"]>.coin-name {
+}
+
+.input-wabbr>label[data-count="5"]>.coin-name {
+}
+
+.exchange-form>div.exchange-wallet input,.exchange-form>div.exchange-wallet label {
+}
+
+.exchange-form>div.exchange-wallet input {
+}
+
+button.exchange-submit,.exchange-option-inner {
+}
+
+button.exchange-submit>span {
+    width: auto
+}
+
+.input-wabbr>input ~ .hint.error {
+    top: 4.1em
+}
+
+.input-wabbr>.ui-select-outer.active ~ .hint.error {
+    display: none
+}
+
+.input-wabbr.locked:after {
+    top: .6rem
+}
+
+.input-wabbr.toleft.locked:after {
+    left: 100%;
+    padding-left: 0;
+    padding-right: .3rem;
+    right: auto;
+    display: none
+}
+
+.input-wabbr.toright.locked:after {
+    padding-right: .3rem
+}
+
+@media only screen and (max-device-width: 700px) {
+    .ui-select-list>ul:-webkit-scrollbar {
+        width:0
+    }
+}
+
+.exchange-form>div.exchange-terms {
+    margin-top: 1em;
+    font-size: .85em;
+    text-align: center;
+    color: rgba(255,255,255,0.6);
+    font-weight: 300
+}
+
+.exchange-form>div.exchange-terms>a {
+    color: #018fdf;
+    font-weight: 600
+}
+
+.exchange-form>div.exchange-terms>a:hover {
+    text-decoration: underline
+}
+
+div.exchange-different-faq h3 {
+    font-size: 1em;
+    font-weight: bold;
+    margin: 1em 0 .3em;
+    text-align: left;
+    background-image: none;
+    background-clip: unset;
+    color: #fff
+}
+
+div.exchange-different-faq p {
+    text-indent: 0;
+    line-height: 1.2;
+    text-align: justify;
+    margin-bottom: .2em;
+    margin-top: 0 !important
+}
+
+div.exchange-different-faq ul {
+    margin-bottom: .5em
+}
+
+div.exchange-different-faq .faq-exchange-example {
+    padding-left: 1em;
+    border-left: 2px solid #0171a6;
+    font-size: .9em;
+    margin: .7em 0 .2em .1em;
+    font-style: italic;
+    text-align: left;
+    text-indent: 0;
+    line-height: 1.2
+}
+
+.exchange-option-inner label.radioselect>span {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    align-items: center;
+    background-color: rgba(0,0,0,0.5);
+    border-radius: .5em;
+    border: 0;
+    border: 1px solid transparent;
+    display: flex;
+    font-size: 1em;
+    height: 3.575em;
+    color: rgba(255,255,255,0.45);
+    justify-content: center;
+    opacity: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap
+}
+
+.exchange-option-inner label.radioselect:first-of-type>span {
+}
+
+.exchange-option-inner label.radioselect:last-of-type>span {
+}
+
+.exchange-option-inner label.radioselect>input:checked + span {
+    color: #008FDF;
+    border-color: #008FDF;
+    font-weight: 600
+}
+
+.exchange-option .exchange-option-diff {
+    cursor: pointer;
+    display: block;
+    -webkit-tap-highlight-color: transparent;
+    color: #fff;
+    white-space: nowrap;
+    height: 2em;
+    position: relative;
+    z-index: 1;
+    width: 2em;
+    margin-left: .5em
+}
+
+.exchange-option-diff>font {
+    width: 1em
+}
+
+.exchange-option-diff>div {
+    align-items: center;
+    background-color: rgba(0,0,0,0.5);
+    display: flex;
+    height: 100%;
+    overflow: hidden;
+    position: absolute;
+    left: 0;
+    top: 0;
+    border-radius: 1em;
+    max-width: 2em;
+    -webkit-transition: max-width .3s ease,background-color .3s ease;
+    -o-transition: max-width .3s ease,background-color .3s ease;
+    transition: max-width .3s ease,background-color .3s ease
+}
+
+.exchange-option-diff:hover>div {
+    max-width: 20em;
+    background-color: rgba(0,0,0,0.8)
+}
+
+.exchange-option-diff:hover>div i {
+    color: #008FDF
+}
+
+.exchange-option-diff i {
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1;
+    text-align: center;
+    vertical-align: middle;
+    display: block;
+    min-width: 2em
+}
+
+.exchange-option-diff font {
+    font-size: .8em;
+    padding-right: .9em
+}
+
+.popup-content {
+    line-height: 1.5;
+    padding: 2em 2em;
+    max-height: 100%;
+    overflow: auto
+}
+
+.popup-content.popup-confirm>p {
+    line-height: 1.5;
+    margin-bottom: 1em
+}
+
+.popup-content .btn.submit {
+    background-color: #0171a6;
+    color: #fff
+}
+
+.popup-confirm-whead .popup-ctrl {
+    margin-top: 0;
+    padding-bottom: 2em
+}
+
+.popup-close {
+    padding: 1.6em;
+    right: 0;
+    top: 0
+}

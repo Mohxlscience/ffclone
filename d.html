@@ -811,7 +811,7 @@
 					<input class="input-amount" autocomplete="off" type="text" value="" id="select_amount_from" data-dir="from" maxlength="18">
 					<div id="select_maxmin_from" class="hint maxmin"><button type="button" class="maxmin-value" data-value="0.00023605"><span class="prefix">min:</span><span>0.00023605 BTC</span></button><button type="button" class="maxmin-value" data-value="1.44540475"><span class="prefix">max:</span><span>1.44540475 BTC</span></button></div>
 					<span id="select_hinterror_from" class="hint error"></span>
-					<label id="select_label_from2" data-count="3"><span class="coin-img svgcoin btc"></span><span class="coin-name"><span class="name">BTC</span></span></label>
+					<label id="select_label_from" data-count="3"><span class="coin-img svgcoin btc"></span><span class="coin-name"><span class="name">BTC</span></span></label>
 					<div class="exch-info">
 						<div class="input-rate" id="select_rate_from">1 BTC ≈ 28.020276 ETH</div>
 						<div class="rateusd"><span id="rate_usd_from">$ 973.32</span></div>
@@ -830,7 +830,7 @@
 					<div class="ccy-name" id="select_ccyname_to">Ethereum</div>
 				</div>
 				<div class="input-wabbr toright">
-					<div data-value="ETH" class="ui-select-outer with-search hidden-label  "><label class="ui-select" data-value="ETH">
+					<div data-value="ETH" class="ui-select-outer with-search hidden-label active"><label class="ui-select" data-value="ETH">
                         <div class="ui-select-value">
                             <div class="coin-ticker"><span class="name">ETH</span></div>
                             <div class="coin-ico svgcoin eth"></div>
@@ -893,7 +893,7 @@
 					<input class="input-amount" autocomplete="off" type="text" value="" id="select_amount_to" data-dir="to" maxlength="18" readonly="readonly">
 					<div id="select_maxmin_to" class="hint maxmin"><button type="button" class="maxmin-value" data-value="0.005"><span class="prefix">min:</span><span>0.005 ETH</span></button><button type="button" class="maxmin-value" data-value="40.499034"><span class="prefix">max:</span><span>40.499034 ETH</span></button></div>
 					<span id="select_hinterror_to" class="hint error"></span>
-					<label id="select_label_to "  data-count="3"><span class="coin-img svgcoin eth"></span><span class="coin-name"><span class="name">ETH</span></span></label>
+					<label id="select_label_to"  data-count="3"><span class="coin-img svgcoin eth"></span><span class="coin-name"><span class="name">ETH</span></span></label>
 					<div class="exch-info">
 						<div class="input-rate" id="select_rate_to">1 ETH ≈ 0.03531255 BTC</div>
 						<div class="rateusd"><span id="rate_usd_to">$ 962.96</span></div>
@@ -919,27 +919,38 @@
 					</div>
 								</div>
 			</div>
-            <button id="toggleButton">Click</button>
+            
             <script>
-       // Sélectionne l'élément du label qui est cliqué
-document.getElementById("select_label_from2").addEventListener("click", function() {
-    // Sélectionne l'élément cible à masquer ou afficher
-    const activeElement = document.querySelector(".ui-select-outer.with-search.hidden-label.active");
-    const targetElement = document.querySelector(".col[data-value='ETH']");
+     document.addEventListener("DOMContentLoaded", function() {
+    // Vérifie si l'élément avec l'ID "select_label_to" existe
+    const selectLabelTo = document.getElementById("select_label_to");
 
-    // Si l'élément actif est visible, le masque, sinon l'affiche
-    if (activeElement && targetElement) {
-        if (activeElement.style.display === "none") {
-            activeElement.style.display = "block";
-            targetElement.style.display = "none";
-        } else {
-            activeElement.style.display = "none";
-            targetElement.style.display = "block";
-        }
+    if (selectLabelTo) {
+        // Ajoute l'événement de clic
+        selectLabelTo.addEventListener("click", function() {
+            // Sélectionne l'élément actif et l'élément cible
+            const activeElement = document.querySelector(".ui-select-outer.with-search.hidden-label.active");
+            const targetElement = document.querySelector(".col[data-value='ETH']");
+
+            // Si les deux éléments existent, bascule leur visibilité
+            if (activeElement && targetElement) {
+                if (activeElement.style.display === "none") {
+                    activeElement.style.display = "block";
+                    targetElement.style.display = "none";
+                } else {
+                    activeElement.style.display = "none";
+                    targetElement.style.display = "block";
+                }
+            } else {
+                console.warn("Éléments non trouvés : vérifiez les sélecteurs.");
+            }
+        });
+    } else {
+        console.warn("Élément #select_label_to non trouvé dans le DOM.");
     }
 });
 
-           </script>
+            </script>
 			<div class="exchange-wallet exchange-wallet-extra center" id="wallet_extra_outer">
 				<div class="wrap-header">
 					<header id="receive_extraid_label">Destination Tag (optional)</header>
@@ -1740,7 +1751,6 @@ document.getElementById("select_label_from2").addEventListener("click", function
 		</div>
 	</footer>
     <link rel="stylesheet" type="text/css" href="assets/css/svgimgs.min4d18.css?251935">
-    
 </body>
 
 <!-- Mirrored from ff.io/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 07 Nov 2024 18:55:51 GMT -->

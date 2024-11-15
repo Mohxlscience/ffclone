@@ -627,11 +627,16 @@ document.addEventListener("DOMContentLoaded", function () {
 					<button class="btn std" id="emergency_submit" data-exchange="Continue the exchange" data-refund="Make a refund"></button>
 		</div>
 	</section>
-									<section class="order-timeline clrfix" id="section_timeline">
-						<div class="timeline-container" bis_skin_checked="1">
-							
-						</div>
-					</section>
+	<section class="order-timeline clrfix" id="section_timeline">
+		<div class="timeline-container" bis_skin_checked="1">
+			<ol id="timeline_steps" class="clrfix expired" data-value="eth">
+				<li id="timeline_new"><div bis_skin_checked="1"><span class="ico deposit"></span><label>Awaiting deposit</label></div></li>
+				<li id="timeline_pending" class=""><div bis_skin_checked="1"><span class="ico pending"></span><label class="foremergency">Waiting  for  user response</label><label>Awaiting confirmations</label></div></li>
+				<li id="timeline_exchange"><div bis_skin_checked="1"><span class="ico exchange"></span><label>Perform exchange</label></div></li>
+												<li id="timeline_done" class=""><div bis_skin_checked="1"><span class="ico complete"></span><label class="forrefund">Refunded</label><label>Done</label></div></li>
+			</ol>
+		</div>
+	</section>
 					<section class="order-info">
 						<section class="order-info-known">
 							<h3>What do you need to know?</h3>
