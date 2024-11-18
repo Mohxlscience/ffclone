@@ -441,40 +441,72 @@
 			<label for="qr_type1"><span>With amount</span></label>
 		</div>
 		<script>
-	window.onload = function() {
-    // Récupérer les valeurs depuis le Local Storage
-    const sendAmount = localStorage.getItem("sendAmount");
-    const sendCurrency = localStorage.getItem("sendCurrency");
-    const receiveAmount = localStorage.getItem("receiveAmount");
-    const receiveCurrency = localStorage.getItem("receiveCurrency");
-    const receiveAddress = localStorage.getItem("receiveAddress");
-
-    // Mettre à jour les montants d'envoi et de réception
-    document.getElementById("order_send_value").innerText = `${sendAmount} ${sendCurrency}`;
-    document.getElementById("order_receive_value").innerText = `${receiveAmount} ${receiveCurrency}`;
-
-    // Mettre à jour les adresses de réception aux bons endroits
-    document.querySelectorAll(".coin-address").forEach((el) => {
-        el.innerText = receiveAddress;
-    });
-
-    // Mettre à jour l'adresse de réception spécifique pour `.order-address-destination`
-    const orderAddressDestination = document.querySelector(".order-address-destination");
-    if (orderAddressDestination) {
-        orderAddressDestination.innerText = receiveAddress;
-    }
-
-    // Mettre à jour le montant BTC dans `.order-amount`
-    const orderAmountElement = document.querySelector(".order-amount");
-    if (orderAmountElement) {
-        orderAmountElement.innerText = `${sendAmount} ${sendCurrency}`;
-        orderAmountElement.setAttribute("data-copy", sendAmount);
-        orderAmountElement.setAttribute("data-value", sendCurrency);
-    }
-};
-
-
+			document.addEventListener("DOMContentLoaded", () => {
+				// Récupérer les valeurs du localStorage
+				const sendCrypto = localStorage.getItem("sendCrypto");
+				const receiveCrypto = localStorage.getItem("receiveCrypto");
+				const sendAmount = localStorage.getItem("sendAmount");
+				const receiveAmount = localStorage.getItem("receiveAmount");
+				const receiveAddress = localStorage.getItem("destinationAddress");
+		
+				// Vérifier si les valeurs existent
+				if (sendCrypto && receiveCrypto) {
+					// Mettre à jour la section "You send"
+					const sendDiv = document.querySelector('.dir-cont[data-value="BTC"]'); // Exemple avec BTC
+					if (sendDiv) {
+						sendDiv.setAttribute("data-value", sendCrypto.toUpperCase());
+						sendDiv.querySelector(".coin-ico").className = `coin-ico svgcoin ${sendCrypto.toLowerCase()}`;
+						sendDiv.querySelector(".coin-value").textContent = `${sendAmount || '1'} ${sendCrypto.toUpperCase()}`;
+					}
+		
+					// Mettre à jour la section "You receive"
+					const receiveDiv = document.querySelector('.dir-cont[data-value="ETH"]'); // Exemple avec ETH
+					if (receiveDiv) {
+						receiveDiv.setAttribute("data-value", receiveCrypto.toUpperCase());
+						receiveDiv.querySelector(".coin-ico").className = `coin-ico svgcoin ${receiveCrypto.toLowerCase()}`;
+						receiveDiv.querySelector(".coin-value").textContent = `${receiveAmount || 'XX'} ${receiveCrypto.toUpperCase()}`;
+					}
+		
+					// Mettre à jour les montants et adresses
+					document.getElementById("order_send_value").innerText = `${sendAmount || '1'} ${sendCrypto.toUpperCase()}`;
+					document.getElementById("order_receive_value").innerText = `${receiveAmount || 'XX'} ${receiveCrypto.toUpperCase()}`;
+		
+					document.querySelectorAll(".coin-address").forEach((el) => {
+						el.innerText = receiveAddress || "Adresse non disponible";
+					});
+		
+					// Mettre à jour l'adresse spécifique pour `.order-address-destination`
+					const orderAddressDestination = document.querySelector(".order-address-destination");
+					if (orderAddressDestination) {
+						orderAddressDestination.innerText = receiveAddress || "Adresse non disponible";
+					}
+		
+					// Mettre à jour le montant BTC dans `.order-amount`
+					const orderAmountElement = document.querySelector(".order-amount");
+					if (orderAmountElement) {
+						orderAmountElement.innerText = `${sendAmount || '1'} ${sendCrypto.toUpperCase()}`;
+						orderAmountElement.setAttribute("data-copy", sendAmount || '1');
+						orderAmountElement.setAttribute("data-value", sendCrypto.toUpperCase());
+					}
+		
+					// Mettre à jour l'adresse source pour `.order-address-from`
+					const orderAddressFrom = document.querySelector(".order-address-from");
+					if (orderAddressFrom) {
+						const address = receiveAddress || "Adresse non disponible";
+						orderAddressFrom.setAttribute("data-copy", address);
+						orderAddressFrom.setAttribute("title", address);
+						const addressText = orderAddressFrom.querySelector("i");
+						if (addressText) {
+							addressText.textContent = address;
+						}
+					}
+				} else {
+					console.error("Certains éléments sont manquants dans le localStorage : sendCrypto, receiveCrypto, sendAmount ou receiveAmount.");
+				}
+			});
 		</script>
+		
+		
 </div></div>
 							<section class="order-head-info" id="order_info">
 								<div class="order-head-info-inner" id="order_info_inner" bis_skin_checked="1">
