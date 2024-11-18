@@ -500,13 +500,19 @@
 							addressText.textContent = address;
 						}
 					}
+		
+					// Mettre à jour le texte du label avec l'id "oustroupistache"
+					const receiveLabel = document.getElementById("oustroupistache");
+					if (receiveLabel) {
+						receiveLabel.innerText = `Receiving address ${receiveCrypto.toUpperCase()}`;
+					}
 				} else {
 					console.error("Certains éléments sont manquants dans le localStorage : sendCrypto, receiveCrypto, sendAmount ou receiveAmount.");
 				}
 			});
 		</script>
 		
-
+		
 		
 </div></div>
 							<section class="order-head-info" id="order_info">
@@ -634,7 +640,7 @@ document.addEventListener("DOMContentLoaded", function () {
 	<p class="order-attention"><b>Attention!</b> If the market rate changes by more than 1.2% before the appearance of your transaction on the blockchain network, you will be asked to make a refund or continue exchanging at the market rate.</p>
 </div>
 <div class="order-data-destination" bis_skin_checked="1">
-	<p><label>Receiving address ETH</label><br><span class="order-address-destination">0x5256C93960d3dc2aB256B81C4b8C741E512f040f</span></p>
+	<p><label id="oustroupistache">Receiving address ETH</label><br><span class="order-address-destination">0x5256C93960d3dc2aB256B81C4b8C741E512f040f</span></p>
 </div>														</div>
 						</div>
 						<div class="order-extra-details more none" id="order_details_more" bis_skin_checked="1">
