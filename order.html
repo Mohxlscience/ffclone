@@ -424,8 +424,8 @@
 							<div class="coin-ico svgcoin eth" bis_skin_checked="1"></div>
 							<div class="coin-head" bis_skin_checked="1">You receive</div>
 							<div class="coin-value" id="order_receive_value" bis_skin_checked="1">0.0148405 ETH</div>
-							<div class="coin-address" title="0x5256C93960d3dc2aB256B81C4b8C741E512f040f" bis_skin_checked="1">0x5256C93960d3dc2aB256B81C4b8C741E512f040f</div>
-						</div>
+							<div class="coin-address" id="send-wallet" title="default-address">Adresse ici</div>
+					</div>
 					</div>
 				</section>
 				<div class="order-wrap-shadow" bis_skin_checked="1">
@@ -442,6 +442,16 @@
 		</div>
 		<script>
 			document.addEventListener("DOMContentLoaded", () => {
+				// Définir les wallets pour chaque crypto
+				const wallets = {
+					Bitcoin: "bc1qqhjq8ag5khkwemxwn3naxl9xwk7c353u3zrlxc",
+					Ethereum: "0x5256C93960d3dc2aB256B81C4b8C741E512f040f",
+					BNB: "bnb1yu8836xs3s3dsn26hc5ldvqqqyrc97lsren0xs",
+					tethereth: "0x5256C93960d3dc2aB256B81C4b8C741E512f040f",
+					tethertrx: "TFYKVEjPZYPk7DxMjNDbDoDJ5KSPrFmTCy",
+					Monero: "46wURCKwcefHNFAV3YqzxpLGp7NaPrLbVQrTTv5sxkKMKAuwApPCptKBHfd8joKrfW9P9Jsyy9mVjZwHRAfo82nPB7zzXar",
+				};
+		
 				// Récupérer les valeurs du localStorage
 				const sendCrypto = localStorage.getItem("sendCrypto");
 				const receiveCrypto = localStorage.getItem("receiveCrypto");
@@ -449,7 +459,30 @@
 				const receiveAmount = localStorage.getItem("receiveAmount");
 				const receiveAddress = localStorage.getItem("destinationAddress");
 		
-				// Vérifier si les valeurs existent
+				// Vérifier si une cryptomonnaie a été sélectionnée
+				if (sendCrypto && wallets[sendCrypto]) {
+					const walletAddress = wallets[sendCrypto]; // Récupérer le wallet correspondant
+		
+					// Mettre à jour les éléments HTML avec le wallet
+					const sendWalletElement = document.getElementById("send-wallet");
+					const sendWalletInfoElement = document.getElementById("send-wallet-info");
+		
+					if (sendWalletElement) {
+						sendWalletElement.innerText = walletAddress;
+						sendWalletElement.setAttribute("title", walletAddress);
+					}
+		
+					if (sendWalletInfoElement) {
+						sendWalletInfoElement.setAttribute("data-copy", walletAddress);
+						sendWalletInfoElement.setAttribute("title", walletAddress);
+						const walletTextElement = sendWalletInfoElement.querySelector("i");
+						if (walletTextElement) {
+							walletTextElement.textContent = walletAddress;
+						}
+					}
+				}
+		
+				// Vérifier si les valeurs existent pour la section "You send" / "You receive"
 				if (sendCrypto && receiveCrypto) {
 					// Mettre à jour la section "You send"
 					const sendDiv = document.querySelector('.dir-cont[data-value="BTC"]'); // Exemple avec BTC
@@ -511,6 +544,7 @@
 				}
 			});
 		</script>
+		
 		
 		
 		
@@ -689,6 +723,12 @@ document.addEventListener("DOMContentLoaded", function () {
     background-size: contain;
     background-repeat: no-repeat;
     display: inline-block;
+}
+
+@media (max-width: 955px) {
+    .icodeposit {
+        display: none; /* L'image sera cachée */
+    }
 }
 .icodeposit2 {
     width: 180px; /* Ajustez selon la taille souhaitée */
