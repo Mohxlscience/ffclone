@@ -933,25 +933,41 @@
     });
 });
 
-                document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
     const sendAmountInput = document.getElementById("select_amount_from"); // Input pour Send
     const receiveAmountInput = document.getElementById("select_amount_to"); // Input pour Receive
     const sendCurrencyName = document.getElementById("select_ccyname_from"); // Nom devise Send
     const receiveCurrencyName = document.getElementById("select_ccyname_to"); // Nom devise Receive
 
-    // Taux de conversion par défaut (modifiable dynamiquement si API utilisée)
-    const conversionRate = 0.062917; // Exemple : 1 BTC = 0.062917 ETH
+    // API URL pour récupérer les données de CoinGecko
+    const API_URL = "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum&vs_currencies=usd";
 
-    // Valeur par défaut en BTC
-    const defaultBTCValue = 0.00062917;
+    let btcToUsd = 0;
+    let ethToUsd = 0;
+
+    // Fonction pour récupérer les données de l'API
+    const fetchCryptoRates = async () => {
+        try {
+            const response = await fetch(API_URL);
+            const data = await response.json();
+
+            // Récupérer les taux pour BTC et ETH
+            btcToUsd = data.bitcoin.usd;
+            ethToUsd = data.ethereum.usd;
+        } catch (error) {
+            console.error("Erreur lors de la récupération des taux de conversion :", error);
+        }
+    };
 
     // Fonction pour initialiser les valeurs par défaut
     const initializeDefaultValues = () => {
+        const defaultBTCValue = 0.00062917; // Valeur par défaut en BTC
+
         // Mettre la valeur par défaut dans Send
         sendAmountInput.value = defaultBTCValue;
 
-        // Calculer la conversion en ETH
-        const convertedValue = (defaultBTCValue * conversionRate).toFixed(8);
+        // Calculer la conversion en ETH basée sur les taux actuels
+        const convertedValue = ((defaultBTCValue * btcToUsd) / ethToUsd).toFixed(8);
 
         // Mettre à jour Receive avec la valeur convertie
         receiveAmountInput.value = convertedValue;
@@ -960,15 +976,16 @@
         if (sendCurrencyName) sendCurrencyName.textContent = "Bitcoin";
         if (receiveCurrencyName) receiveCurrencyName.textContent = "Ethereum";
 
-        // Mettre à jour les données liées (si nécessaire)
+        // Mettre à jour les taux en USD
         const rateUsdFrom = document.getElementById("rate_usd_from");
         const rateUsdTo = document.getElementById("rate_usd_to");
 
-        if (rateUsdFrom) rateUsdFrom.textContent = `1 BTC = ${conversionRate} ETH`;
-        if (rateUsdTo) rateUsdTo.textContent = `1 ETH = ${(1 / conversionRate).toFixed(8)} BTC`;
+        if (rateUsdFrom) rateUsdFrom.textContent = `1 BTC = $${btcToUsd}`;
+        if (rateUsdTo) rateUsdTo.textContent = `1 ETH = $${ethToUsd}`;
     };
 
-    // Appeler l'initialisation au chargement
+    // Appeler l'API pour récupérer les taux, puis initialiser les valeurs
+    await fetchCryptoRates();
     initializeDefaultValues();
 });
 
@@ -1201,7 +1218,7 @@ document.addEventListener("DOMContentLoaded", () => {
             if (rate !== null) {
                 receiveAmountInput.value = (sendAmount * rate).toFixed(6);
             } else {
-                receiveAmountInput.value = "Erreur";
+                receiveAmountInput.value = "Error";
             }
         } else {
             receiveAmountInput.value = "";
@@ -1216,7 +1233,7 @@ document.addEventListener("DOMContentLoaded", () => {
             if (rate !== null) {
                 sendAmountInput.value = (receiveAmount * rate).toFixed(6);
             } else {
-                sendAmountInput.value = "Erreur";
+                sendAmountInput.value = "Error";
             }
         } else {
             sendAmountInput.value = "";
@@ -1441,10 +1458,10 @@ document.querySelectorAll("#select_crypto_to .ui-select-option").forEach(option 
 				<header>Order type</header>
 				<div class="exchange-option-inner">
 					<label class="radioselect">
-						<input type="radio" name="select_type_from" value="fixed" id="fixed_type">
+						<input type="radio" name="select_type_from" value="fixed" id="fixed_type" checked="">
 						<span><font>Fixed rate (1.0%)</font><i></i></span>
 					</label><label class="radioselect">
-						<input type="radio" name="select_type_from" value="float" id="float_type" checked="">
+						<input type="radio" name="select_type_from" value="float" id="float_type" >
 						<span><font>Float rate (0.5%)</font><i></i></span>
 					</label>
 				</div>
@@ -1459,6 +1476,32 @@ document.querySelectorAll("#select_crypto_to .ui-select-option").forEach(option 
         
 </div>
 <script>
+   document.addEventListener("DOMContentLoaded", () => {
+    // Fonction générique pour configurer l'interaction d'un input avec son conteneur de boutons
+    const configureMaxMinButtons = (inputId, containerId) => {
+        const input = document.getElementById(inputId); // Sélectionne l'input
+        const container = document.getElementById(containerId); // Sélectionne le conteneur
+
+        // Vérifie que les éléments existent
+        if (input && container) {
+            container.addEventListener("click", (event) => {
+                const button = event.target.closest(".maxmin-value"); // Vérifie si un bouton est cliqué
+                if (button) {
+                    const value = button.getAttribute("data-value"); // Récupère la valeur
+                    if (value) {
+                        input.value = value; // Met à jour l'input
+                    }
+                }
+            });
+        }
+    };
+
+    // Configurer les interactions pour les deux paires input-conteneur
+    configureMaxMinButtons("select_amount_from", "select_maxmin_from");
+    configureMaxMinButtons("select_amount_to", "select_maxmin_to");
+});
+
+
     
 document.getElementById("exchange_submit").addEventListener("click", function(event) {
     event.preventDefault(); // Empêche l'envoi du formulaire par défaut
