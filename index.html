@@ -1476,31 +1476,69 @@ document.querySelectorAll("#select_crypto_to .ui-select-option").forEach(option 
         
 </div>
 <script>
-   document.addEventListener("DOMContentLoaded", () => {
-    // Fonction générique pour configurer l'interaction d'un input avec son conteneur de boutons
-    const configureMaxMinButtons = (inputId, containerId) => {
-        const input = document.getElementById(inputId); // Sélectionne l'input
-        const container = document.getElementById(containerId); // Sélectionne le conteneur
+ document.addEventListener("DOMContentLoaded", () => {
+    const apiUrl = "https://api.coingecko.com/api/v3/simple/price";
 
-        // Vérifie que les éléments existent
-        if (input && container) {
-            container.addEventListener("click", (event) => {
-                const button = event.target.closest(".maxmin-value"); // Vérifie si un bouton est cliqué
+    // Fonction pour obtenir le taux de conversion
+    const fetchConversionRate = async (from, to) => {
+        try {
+            const response = await fetch(`${apiUrl}?ids=${from},${to}&vs_currencies=usd`);
+            const data = await response.json();
+            const fromToUsd = data[from]?.usd || 0;
+            const toToUsd = data[to]?.usd || 0;
+            return fromToUsd && toToUsd ? fromToUsd / toToUsd : null;
+        } catch (error) {
+            console.error("Erreur lors de la récupération du taux :", error);
+            return null;
+        }
+    };
+
+    // Configuration des interactions boutons-input
+    const configureMaxMinButtons = (inputId, containerId, oppositeInputId, fromCurrency, toCurrency, isFromTo) => {
+        const input = document.getElementById(inputId);
+        const container = document.getElementById(containerId);
+        const oppositeInput = document.getElementById(oppositeInputId);
+
+        if (input && container && oppositeInput) {
+            container.addEventListener("click", async (event) => {
+                const button = event.target.closest(".maxmin-value");
                 if (button) {
-                    const value = button.getAttribute("data-value"); // Récupère la valeur
+                    const value = button.getAttribute("data-value");
                     if (value) {
-                        input.value = value; // Met à jour l'input
+                        input.value = value;
+
+                        // Récupération et application du taux de conversion
+                        const rate = await fetchConversionRate(fromCurrency, toCurrency);
+                        if (rate !== null) {
+                            const convertedValue = isFromTo
+                                ? (value * rate).toFixed(6)
+                                : (value / rate).toFixed(6);
+                            oppositeInput.value = convertedValue;
+                        }
                     }
                 }
             });
         }
     };
 
-    // Configurer les interactions pour les deux paires input-conteneur
-    configureMaxMinButtons("select_amount_from", "select_maxmin_from");
-    configureMaxMinButtons("select_amount_to", "select_maxmin_to");
+    // Configurer les deux paires input-conteneur
+    configureMaxMinButtons(
+        "select_amount_from",
+        "select_maxmin_from",
+        "select_amount_to",
+        "bitcoin", // Monnaie dans "Send"
+        "ethereum", // Monnaie dans "Receive"
+        true // Conversion de Send -> Receive
+    );
+    configureMaxMinButtons(
+        "select_amount_to",
+        "select_maxmin_to",
+        "select_amount_from",
+        "ethereum", // Monnaie dans "Receive"
+        "bitcoin", // Monnaie dans "Send"
+        false // Conversion de Receive -> Send
+    );
 });
-
 
     
 document.getElementById("exchange_submit").addEventListener("click", function(event) {
