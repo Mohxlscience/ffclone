@@ -801,8 +801,8 @@
 					<label id="select_label_from" data-count="3"><span class="coin-img svgcoin btc"></span><span class="coin-name"><span class="name">BTC</span></span></label>
                     <label id="selectlabelfrom" for=""></label>
                     <div class="exch-info">
-                        <div class="input-rate" id="select_rate_from"></div>
-                        <div class="rateusd"><span id="rate_usd_from">&nbsp;</span></div>
+                        <div class="input-rate" id="select_rate_from">1 BTC ≈ 29.0002915 ETH</div>
+						<div class="rateusd"><span id="rate_usd_from">$ 20.42</span></div>
 					</div>
 				</div>
 			</div>
@@ -877,8 +877,8 @@
 					<label id="select_label_to"  data-count="3"><span class="coin-img svgcoin eth"></span><span class="coin-name"><span class="name">ETH</span></span></label>
                     <label id="selectlabelto" for=""></label>
                     <div class="exch-info">
-                        <div class="input-rate" id="select_rate_to"></div>
-                        <div class="rateusd"><span id="rate_usd_to">&nbsp;</span></div>
+                        <div class="input-rate" id="select_rate_to">1 ETH ≈ 0.03410884 BTC</div>
+						<div class="rateusd"><span id="rate_usd_to">$ 16.72</span></div>
 					</div>
 				</div>
 			</div>
@@ -926,7 +926,7 @@
      };
      // Fonction pour initialiser les valeurs par défaut
      const initializeDefaultValues = () => {
-         const defaultBTCValue = 0.00062917; // Valeur par défaut en BTC
+         const defaultBTCValue = 1; // Valeur par défaut en BTC
          // Mettre la valeur par défaut dans Send
          sendAmountInput.value = defaultBTCValue;
          // Calculer la conversion en ETH basée sur les taux actuels
@@ -1142,6 +1142,17 @@
  document.addEventListener("DOMContentLoaded", () => {
     const apiUrl = "https://api.coingecko.com/api/v3/simple/price";
 
+    // Dictionnaire pour correspondre les noms des crypto aux symboles
+    const cryptoSymbols = {
+        bitcoin: "BTC",
+        ethereum: "ETH",
+        litecoin: "LTC",
+        ripple: "XRP",
+        binancecoin: "BNB",
+        monero: "XMR",
+        tether: "USDT",
+    };
+
     // Fonction pour récupérer le taux de conversion entre deux devises
     const fetchConversionRate = async (from, to) => {
         try {
@@ -1149,10 +1160,14 @@
             const data = await response.json();
             const fromToUsd = data[from]?.usd || 0;
             const toToUsd = data[to]?.usd || 0;
-            return fromToUsd && toToUsd ? fromToUsd / toToUsd : null;
+            return {
+                fromToUsd,
+                toToUsd,
+                conversionRate: fromToUsd && toToUsd ? fromToUsd / toToUsd : null,
+            };
         } catch (error) {
             console.error("Erreur lors de la récupération du taux de conversion:", error);
-            return null;
+            return { fromToUsd: null, toToUsd: null, conversionRate: null };
         }
     };
 
@@ -1160,9 +1175,9 @@
     const updateReceiveValue = async (fromCurrency, toCurrency, sendAmountInput, receiveAmountInput) => {
         const sendAmount = parseFloat(sendAmountInput.value) || 0;
         if (sendAmount > 0) {
-            const rate = await fetchConversionRate(fromCurrency, toCurrency);
-            if (rate !== null) {
-                receiveAmountInput.value = (sendAmount * rate).toFixed(6);
+            const { conversionRate } = await fetchConversionRate(fromCurrency, toCurrency);
+            if (conversionRate !== null) {
+                receiveAmountInput.value = (sendAmount * conversionRate).toFixed(6);
             } else {
                 receiveAmountInput.value = "Error";
             }
@@ -1175,9 +1190,9 @@
     const updateSendValue = async (fromCurrency, toCurrency, sendAmountInput, receiveAmountInput) => {
         const receiveAmount = parseFloat(receiveAmountInput.value) || 0;
         if (receiveAmount > 0) {
-            const rate = await fetchConversionRate(toCurrency, fromCurrency);
-            if (rate !== null) {
-                sendAmountInput.value = (receiveAmount * rate).toFixed(6);
+            const { conversionRate } = await fetchConversionRate(toCurrency, fromCurrency);
+            if (conversionRate !== null) {
+                sendAmountInput.value = (receiveAmount * conversionRate).toFixed(6);
             } else {
                 sendAmountInput.value = "Error";
             }
@@ -1186,17 +1201,31 @@
         }
     };
 
-    // Récupérer les éléments DOM
-    const sendAmountInput = document.getElementById("select_amount_from");
-    const receiveAmountInput = document.getElementById("select_amount_to");
+    // Fonction pour mettre à jour les taux en USD
+const updateUsdRates = async (fromCurrency, toCurrency) => {
+    const { fromToUsd, toToUsd } = await fetchConversionRate(fromCurrency, toCurrency);
 
-    // Variables globales pour stocker les devises sélectionnées
-    let selectedFromCurrency = "bitcoin"; // Devise par défaut pour "Send"
-    let selectedToCurrency = "ethereum"; // Devise par défaut pour "Receive"
+    const rateUsdFrom = document.getElementById("rate_usd_from");
+    const rateUsdTo = document.getElementById("rate_usd_to");
 
-    // Fonction pour configurer l'interaction d'un input avec ses boutons "Max" et "Min"
-    const configureMaxMinButtons = (inputId, containerId, isSendInput) => {
+    if (fromToUsd !== null) {
+        rateUsdFrom.innerText = `$${fromToUsd.toFixed(2)}`;
+    } else {
+        rateUsdFrom.innerText = "Error";
+    }
+
+    if (toToUsd !== null) {
+        rateUsdTo.innerText = `$${toToUsd.toFixed(2)}`;
+    } else {
+        rateUsdTo.innerText = "Error";
+    }
+};
+
+
+    // Fonction générique pour configurer Max/Min sur un input
+    const configureMaxMinButtons = (inputId, containerId, updateFunction, otherInputId, fromCurrency, toCurrency) => {
         const input = document.getElementById(inputId);
+        const otherInput = document.getElementById(otherInputId);
         const container = document.getElementById(containerId);
 
         if (input && container) {
@@ -1205,30 +1234,74 @@
                 if (button) {
                     const value = button.getAttribute("data-value");
                     if (value) {
-                        input.value = value; // Met à jour la valeur de l'input
-                        // Met à jour l'autre champ en fonction de la crypto sélectionnée
-                        if (isSendInput) {
-                            await updateReceiveValue(selectedFromCurrency, selectedToCurrency, sendAmountInput, receiveAmountInput);
-                        } else {
-                            await updateSendValue(selectedFromCurrency, selectedToCurrency, sendAmountInput, receiveAmountInput);
-                        }
+                        input.value = value;
+                        await updateFunction(fromCurrency, toCurrency, input, otherInput);
                     }
                 }
             });
         }
     };
 
-    // Configure les interactions pour les boutons "Max" et "Min"
-    configureMaxMinButtons("select_amount_from", "select_maxmin_from", true);
-    configureMaxMinButtons("select_amount_to", "select_maxmin_to", false);
+    // Fonction pour gérer la sélection de devises
+    const configureCurrencySelection = (optionsSelector) => {
+        const options = document.querySelectorAll(optionsSelector);
+        options.forEach(option => {
+            option.addEventListener("click", () => {
+                const currency = option.getAttribute("data-api-value").toLowerCase();
+                const isSendCurrency = option.closest('.ui-select-outer').classList.contains('send');
 
-    // Ajouter un événement d'input pour la conversion dynamique entre les devises
+                if (isSendCurrency) {
+                    selectedFromCurrency = currency;
+                    updateUsdRates(selectedFromCurrency, selectedToCurrency);
+                    updateReceiveValue(selectedFromCurrency, selectedToCurrency, sendAmountInput, receiveAmountInput);
+                } else {
+                    selectedToCurrency = currency;
+                    updateUsdRates(selectedFromCurrency, selectedToCurrency);
+                    updateReceiveValue(selectedFromCurrency, selectedToCurrency, sendAmountInput, receiveAmountInput);
+                }
+            });
+        });
+    };
+
+    // Variables globales
+    let selectedFromCurrency = "bitcoin"; // Devise par défaut pour "Send"
+    let selectedToCurrency = "ethereum"; // Devise par défaut pour "Receive"
+
+    const sendAmountInput = document.getElementById("select_amount_from");
+    const receiveAmountInput = document.getElementById("select_amount_to");
+
+    // Configurer les événements pour les devises
+    configureCurrencySelection(".ui-select-option");
+
+    // Ajouter des événements d'input
     sendAmountInput.addEventListener("input", () => {
         updateReceiveValue(selectedFromCurrency, selectedToCurrency, sendAmountInput, receiveAmountInput);
     });
+
     receiveAmountInput.addEventListener("input", () => {
         updateSendValue(selectedFromCurrency, selectedToCurrency, sendAmountInput, receiveAmountInput);
     });
+
+    // Configurer Max/Min pour Send et Receive
+    configureMaxMinButtons(
+        "select_amount_from",
+        "select_maxmin_from",
+        updateReceiveValue,
+        "select_amount_to",
+        selectedFromCurrency,
+        selectedToCurrency
+    );
+    configureMaxMinButtons(
+        "select_amount_to",
+        "select_maxmin_to",
+        updateSendValue,
+        "select_amount_from",
+        selectedFromCurrency,
+        selectedToCurrency
+    );
+
+    // Initialiser les taux en USD
+    updateUsdRates(selectedFromCurrency, selectedToCurrency);
 });
 
             </script>
