@@ -1,93 +1,119 @@
-// Variables de sélection des éléments
-const selectCurrencyFrom = document.getElementById("select_currency_from");
-const selectCurrencyTo = document.getElementById("select_currency_to");
-const selectAmountFrom = document.getElementById("select_amount_from");
-const selectAmountTo = document.getElementById("select_amount_to");
-const btnReverse = document.getElementById("btn_reverse");
-const exchangeSubmit = document.getElementById("exchange_submit");
-const receiveWallet = document.getElementById("receive_wallet");
-const receiveExtraId = document.getElementById("receive_extraid");
+document.addEventListener("DOMContentLoaded", async () => {
+    const elements = {
+        sendAmountInput: document.getElementById("select_amount_from"),
+        receiveAmountInput: document.getElementById("select_amount_to"),
+        sendCurrencyName: document.getElementById("select_ccyname_from"),
+        receiveCurrencyName: document.getElementById("select_ccyname_to"),
+        rateUsdFrom: document.getElementById("rate_usd_from"),
+        rateUsdTo: document.getElementById("rate_usd_to"),
+        reverseButton: document.getElementById("btn_reverse"),
+    };
 
-// Fonction d'activation/désactivation du bouton d'échange
-function checkFormCompletion() {
-    // Active le bouton si tous les champs requis sont remplis
-    if (
-        selectCurrencyFrom.value &&
-        selectCurrencyTo.value &&
-        selectAmountFrom.value &&
-        selectAmountTo.value &&
-        receiveWallet.value
-    ) {
-        exchangeSubmit.classList.remove("disabled");
-    } else {
-        exchangeSubmit.classList.add("disabled");
+    const API_URL = "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum&vs_currencies=usd";
+    let btcToUsd = 0;
+    let ethToUsd = 0;
+
+    /**
+     * Récupère les taux de conversion depuis l'API
+     */
+    const fetchCryptoRates = async () => {
+        try {
+            const response = await fetch(API_URL);
+            const data = await response.json();
+            btcToUsd = data.bitcoin.usd;
+            ethToUsd = data.ethereum.usd;
+        } catch (error) {
+            console.error("Erreur lors de la récupération des taux de conversion :", error);
+        }
+    };
+
+    /**
+     * Initialise les valeurs par défaut pour les champs et les étiquettes
+     */
+    const initializeDefaultValues = () => {
+        const defaultBTCValue = 0.00062917;
+        const convertedValue = ((defaultBTCValue * btcToUsd) / ethToUsd).toFixed(8);
+
+        elements.sendAmountInput.value = defaultBTCValue;
+        elements.receiveAmountInput.value = convertedValue;
+
+        if (elements.sendCurrencyName) elements.sendCurrencyName.textContent = "Bitcoin";
+        if (elements.receiveCurrencyName) elements.receiveCurrencyName.textContent = "Ethereum";
+
+        if (elements.rateUsdFrom) elements.rateUsdFrom.textContent = `1 BTC = $${btcToUsd}`;
+        if (elements.rateUsdTo) elements.rateUsdTo.textContent = `1 ETH = $${ethToUsd}`;
+    };
+
+    /**
+     * Inverse les valeurs et étiquettes entre les sections Send et Receive
+     */
+    const reverseSections = () => {
+        [elements.sendAmountInput.value, elements.receiveAmountInput.value] =
+            [elements.receiveAmountInput.value, elements.sendAmountInput.value];
+
+        [elements.sendCurrencyName.textContent, elements.receiveCurrencyName.textContent] =
+            [elements.receiveCurrencyName.textContent, elements.sendCurrencyName.textContent];
+
+        [elements.rateUsdFrom.textContent, elements.rateUsdTo.textContent] =
+            [elements.rateUsdTo.textContent, elements.rateUsdFrom.textContent];
+    };
+
+    /**
+     * Configure les options interactives pour les sections Send et Receive
+     */
+    const configureOptions = (optionsSelector, ccyNameId, labelId, maxMinContainerId, currencyLimits) => {
+        const options = document.querySelectorAll(optionsSelector);
+        const ccyName = document.getElementById(ccyNameId);
+        const label = document.getElementById(labelId);
+        const maxMinContainer = document.getElementById(maxMinContainerId);
+
+        options.forEach(option => {
+            option.addEventListener("click", () => {
+                const name = option.querySelector(".coin-name").textContent.trim();
+                const symbol = option.querySelector(".name").textContent.trim();
+                const iconClass = Array.from(option.querySelector(".coin-ico").classList).find(cls => cls !== "coin-ico" && cls !== "svgcoin");
+
+                if (ccyName) ccyName.textContent = name;
+                if (label) label.innerHTML = `
+                    <span class="coin-img svgcoin ${iconClass}"></span>
+                    <span class="coin-name">
+                        <span class="name">${symbol}</span>
+                    </span>`;
+
+                if (maxMinContainer && currencyLimits[symbol]) {
+                    maxMinContainer.innerHTML = `
+                        <button type="button" class="maxmin-value" data-value="${currencyLimits[symbol].min}">
+                            <span class="prefix">min:</span>${currencyLimits[symbol].min}
+                        </button>
+                        <button type="button" class="maxmin-value" data-value="${currencyLimits[symbol].max}">
+                            <span class="prefix">max:</span>${currencyLimits[symbol].max}
+                        </button>`;
+                }
+            });
+        });
+    };
+
+    // Initialiser les taux et les valeurs par défaut
+    await fetchCryptoRates();
+    initializeDefaultValues();
+
+    // Configurer le bouton d'inversion
+    if (elements.reverseButton) {
+        elements.reverseButton.addEventListener("click", (event) => {
+            event.preventDefault();
+            reverseSections();
+        });
     }
-}
 
-// Inverser les devises sélectionnées
-btnReverse.addEventListener("click", function () {
-    const tempCurrency = selectCurrencyFrom.value;
-    selectCurrencyFrom.value = selectCurrencyTo.value;
-    selectCurrencyTo.value = tempCurrency;
-    checkFormCompletion();
-});
+    // Configurer les options pour les sections Send et Receive
+    const currencyLimits = {
+        'BTC': { min: '0.00023605 BTC', max: '1.44540475 BTC' },
+        'ETH': { min: '0.005 ETH', max: '40.499034 ETH' },
+        'USDT': { min: '10 USDT', max: '10000 USDT' },
+        'XMR': { min: '0.01 XMR', max: '500 XMR' },
+        'BNB': { min: '0.1 BNB', max: '1000 BNB' },
+    };
 
-// Mettre à jour le montant reçu en fonction du montant envoyé
-selectAmountFrom.addEventListener("input", function () {
-    const rate = selectCurrencyFrom.value === "BTC" ? 1.05 : 1.02; // Exemple de taux fictif
-    selectAmountTo.value = (parseFloat(selectAmountFrom.value) * rate).toFixed(2);
-    checkFormCompletion();
+    configureOptions(".ui-select-outer.send .ui-select-option", "select_ccyname_from", "select_label_from", "select_maxmin_from", currencyLimits);
+    configureOptions(".ui-select-outer.receive .ui-select-option", "select_ccyname_to", "select_label_to", "select_maxmin_to", currencyLimits);
 });
-
-// Vérifier si l'adresse de portefeuille est remplie
-receiveWallet.addEventListener("input", function () {
-    const isValid = receiveWallet.value.length >= 26; // Ex: vérifie si l'adresse a un minimum de 26 caractères
-    document.getElementById("receive_wallet_error").style.display = isValid ? "none" : "inline";
-    checkFormCompletion();
-});
-
-// Activer le bouton d'échange une fois le formulaire rempli
-document.querySelectorAll("input, select, textarea").forEach((element) => {
-    element.addEventListener("input", checkFormCompletion);
-});
-
-// Gestion du type de taux sélectionné
-document.querySelectorAll("input[name='select_type_from']").forEach((radio) => {
-    radio.addEventListener("change", function () {
-        const rateType = radio.value;
-        document.getElementById("type_difference").innerText = rateType === "fixed" ?
-            "Taux fixe sélectionné" : "Taux flottant sélectionné";
-    });
-});
-
-// Action lors de la soumission du formulaire
-exchangeSubmit.addEventListener("click", function (e) {
-    e.preventDefault();
-    if (!exchangeSubmit.classList.contains("disabled")) {
-        alert("Échange lancé ! Traitement de votre demande...");
-        // Code d'exécution de l'échange ou d'envoi de données peut être ajouté ici
-    }
-});
-
-// Copier/Coller le texte du presse-papiers
-document.getElementById("wallet_paste").addEventListener("click", async function () {
-    try {
-        const text = await navigator.clipboard.readText();
-        receiveWallet.value = text;
-        checkFormCompletion();
-    } catch (err) {
-        alert("Impossible de coller le texte");
-    }
-});
-
-// Nettoyer les champs
-document.getElementById("wallet_clear").addEventListener("click", function () {
-    receiveWallet.value = "";
-    checkFormCompletion();
-});
-document.getElementById("extraid_clear").addEventListener("click", function () {
-    receiveExtraId.value = "";
-});
-
-// Initialisation des valeurs par défaut
-checkFormCompletion();
