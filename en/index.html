@@ -738,286 +738,882 @@
                     <div class="wrapper">
                 <div class="exchange-form-outer">
 	<h1>Lightning cryptocurrency exchange</h1>
-    <form class="exchange-form">
-        <div class="exchange-amounts" id="exchange_amount">
-            <div class="col">
-                <div class="wrap-header exch-header">
-                    <header>Send</header>
-                    <div class="ccy-name" id="select_ccyname_from"></div>
-                </div>
-                <div class="input-wabbr toleft">
-                    <select id="select_currency_from" class="hidden">
-                            <option label="separate">Popular currencies</option>
-                                                                                            <option  selected value="BTC" data-img="btc" data-network="BTC" data-shownetwork="0" data-coin="BTC" data-inactive="0" data-tag="">Bitcoin</option>
-                                                                        <option  value="ETH" data-img="eth" data-network="ETH" data-shownetwork="0" data-coin="ETH" data-inactive="0" data-tag="">Ethereum</option>
-                                                                      
-                                        </select>
-                    <input class="input-amount" autocomplete="off" type="text" id="select_amount_from" data-dir="from" maxlength="18">
-                    <div id="select_maxmin_from" class="hint maxmin"></div>
-                    <span id="select_hinterror_from" class="hint error"></span>
-                    <label id="select_label_from" data-count="3"><span class="coin-img svgcoin btc"></span><span class="coin-name"><span class="name">BTC</span></span></label>
-                    <div class="exch-info">
-                        <div class="input-rate" id="select_rate_from"></div>
-                        <div class="rateusd"><span id="rate_usd_from">&nbsp;</span></div>
+	<form class="exchange-form">
+		<div class="exchange-amounts" id="exchange_amount" data-pos-usd="bottom">
+			<div class="col" data-value="BTC">
+				<div class="wrap-header exch-header">
+					<header>Send</header>
+					<div class="ccy-name" id="select_ccyname_from">Bitcoin</div>
+				</div>
+				<div class="input-wabbr toleft locked">
+					<div class="ui-select-outer send with-search hidden-label" data-value="BTC"><label class="ui-select" data-value="BTC">
+                        <div class="ui-select-value">
+                            <div class="coin-ticker"><span class="name">BTC</span></div>
+                            <div class="coin-ico svgcoin btc"></div>
+                            <div class="coin-outer"><span class="coin-name">Bitcoin</span></div>
+                        </div>
+                        <div class="ui-select-arrow"></div>
+                        <div class="ui-select-search"><span class="ui-select-search-ico ico"></span>
+                            <div class="ui-select-search-inner"><input type="text" placeholder="Type a currency or ticker"></div>
+                        </div>
+                    </label>
+                    <div class="ui-select-list" >
+                        <ul  style="padding-right: 0px; width: calc(100% + 0px);"  id="select_crypto_from">
+                            <li class="ui-select-separate">Popular currencies</li>
+                            <li id="select_currency_from_option_BTC" class="ui-select-option " data-value="BTC" data-api-value="bitcoin" data-num="0" data-inactive="0">
+                                <div class="coin-ticker"><span class="name">BTC</span></div>
+                                <div class="coin-ico svgcoin btc"></div>
+                                <div class="coin-outer"><span class="coin-name">Bitcoin</span></div>
+                            </li>
+                            <li id="select_currency_from_option_BSC" class="ui-select-option" data-value="BSC" data-api-value="binancecoin" data-num="1" data-inactive="0">
+                                <div class="coin-ticker"><span class="name">BNB</span><sup data-network="BSC"><span>BSC</span></sup></div>
+                                <div class="coin-ico svgcoin bsc"></div>
+                                <div class="coin-outer"><span class="coin-name">BNB Smart Chain (BEP20)</span></div>
+                            </li>
+                            <li id="select_currency_from_option_ETH" class="ui-select-option" data-value="ETH" data-api-value="ethereum" data-num="2" data-inactive="0">
+                                <div class="coin-ticker"><span class="name">ETH</span></div>
+                                <div class="coin-ico svgcoin eth"></div>
+                                <div class="coin-outer"><span class="coin-name">Ethereum</span></div>
+                            </li>
+                            <li id="select_currency_from_option_USDT" class="ui-select-option" data-value="USDT" data-api-value="tether" data-num="3" data-inactive="0">
+                                <div class="coin-ticker"><span class="name">USDT</span><sup data-network="ETH"><span>ETH</span></sup></div>
+                                <div class="coin-ico svgcoin usdt"></div>
+                                <div class="coin-outer"><span class="coin-name">Tether (ERC20)</span></div>
+                            </li>
+                            <li id="select_currency_from_option_USDTTRC" class="ui-select-option" data-value="USDTTRC" data-api-value="tether" data-num="4" data-inactive="0">
+                                <div class="coin-ticker"><span class="name">USDT</span><sup data-network="TRX"><span>TRX</span></sup></div>
+                                <div class="coin-ico svgcoin usdttrc"></div>
+                                <div class="coin-outer"><span class="coin-name">Tether (TRC20)</span></div>
+                            </li>
+                            <li id="select_currency_from_option_XMR" class="ui-select-option" data-value="XMR" data-api-value="monero" data-num="5" data-inactive="0">
+                                <div class="coin-ticker"><span class="name">XMR</span></div>
+                                <div class="coin-ico svgcoin xmr"></div>
+                                <div class="coin-outer"><span class="coin-name">Monero</span></div>
+                            </li>
+                            <li class="ui-select-separate">All currencies</li>
+                            
+                        </ul>
+                        <div class="ui-select-scroll-wrap" data-height="14">
+                            <div class="ui-select-scroll" style="top: 0px; height: 14.38%;"></div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-middle">
-                <button class="btn-reverse" id="btn_reverse">
-                    <span id="btn_reverse_from" class="btn-reverse-exch ico"></span>
-                    <span id="btn_reverse_to" class="btn-reverse-receive ico"></span>
-                </button>
-            </div>
-            <div class="col">
-                <div class="wrap-header exch-header">
-                    <header>Receive</header>
-                    <div class="ccy-name" id="select_ccyname_to"></div>
-                </div>
-                <div class="input-wabbr toright">
-                    <select id="select_currency_to" class="hidden">
-                            <option label="separate">Popular currencies</option>
-                                                                                            <option  value="BTC" data-img="btc" data-network="BTC" data-shownetwork="0" data-coin="BTC" data-inactive="0" data-tag="">Bitcoin</option>
-                                                                        <option selected  value="ETH" data-img="eth" data-network="ETH" data-shownetwork="0" data-coin="ETH" data-inactive="0" data-tag="">Ethereum</option>
-                                                                                                           </select>
-                    <input class="input-amount" autocomplete="off" type="text" value="" id="select_amount_to" data-dir="to" maxlength="18">
-                    <div id="select_maxmin_to" class="hint maxmin"></div>
-                    <span id="select_hinterror_to" class="hint error"></span>
-                    <label id="select_label_to" data-count="3"><span class="coin-img svgcoin eth"></span><span class="coin-name"><span class="name">ETH</span></span></label>
+					<input class="input-amount" autocomplete="off" type="text" value="" id="select_amount_from" data-dir="from" maxlength="18">
+					<div id="select_maxmin_from" class="hint maxmin"><button type="button" class="maxmin-value" data-value="0.00023605"><span class="prefix">min:</span><span>0.00023605 BTC</span></button><button type="button" class="maxmin-value" data-value="1.44540475"><span class="prefix">max:</span><span>1.44540475 BTC</span></button></div>
+					<span id="select_hinterror_from" class="hint error"></span>
+					<label id="select_label_from" data-count="3"><span class="coin-img svgcoin btc"></span><span class="coin-name"><span class="name">BTC</span></span></label>
+                    <label id="selectlabelfrom" for=""></label>
                     <div class="exch-info">
-                        <div class="input-rate" id="select_rate_to"></div>
-                        <div class="rateusd"><span id="rate_usd_to">&nbsp;</span></div>
+                        <div class="input-rate" id="select_rate_from">1 BTC ≈ 29.0002915 ETH</div>
+						<div class="rateusd"><span id="rate_usd_from">$ 20.42</span></div>
+					</div>
+				</div>
+			</div>
+			<div class="col-middle">
+				<button class="btn-reverse" id="btn_reverse">
+					<span id="btn_reverse_from" class="btn-reverse-exch ico" data-value="BTC"></span>
+					<span id="btn_reverse_to" class="btn-reverse-receive ico" data-value="ETH"></span>
+				</button>
+			</div>
+			<div class="col" data-value="ETH">
+				<div class="wrap-header exch-header">
+					<header>Receive</header>
+					<div class="ccy-name" id="select_ccyname_to">Ethereum</div>
+				</div>
+				<div class="input-wabbr toright">
+					<div data-value="ETH" class="ui-select-outer receive  with-search hidden-label  "><label class="ui-select" data-value="ETH">
+                        <div class="ui-select-value">
+                            <div class="coin-ticker"><span class="name">ETH</span></div>
+                            <div class="coin-ico svgcoin eth"></div>
+                            <div class="coin-outer"><span class="coin-name">Ethereum</span></div>
+                        </div>
+                        <div class="ui-select-arrow"></div>
+                        <div class="ui-select-search"><span class="ui-select-search-ico ico"></span>
+                            <div class="ui-select-search-inner"><input type="text" placeholder="Type a currency or ticker"></div>
+                        </div>
+                    </label>
+                    <div class="ui-select-list">
+                        <ul style="padding-right: 0px; width: calc(100% + 0px);" id="select_crypto_to">
+                            <li class="ui-select-separate">Popular currencies</li>
+                            <li id="select_currency_to_option_BTC" class="ui-select-option" data-value="BTC" data-api-value="bitcoin" data-num="0" data-inactive="0">
+                                <div class="coin-ticker"><span class="name">BTC</span></div>
+                                <div class="coin-ico svgcoin btc"></div>
+                                <div class="coin-outer"><span class="coin-name">Bitcoin</span></div>
+                            </li>
+                            <li id="select_currency_to_option_BSC" class="ui-select-option" data-value="BSC" data-api-value="binancecoin" data-num="1" data-inactive="0">
+                                <div class="coin-ticker"><span class="name">BNB</span><sup data-network="BSC"><span>BSC</span></sup></div>
+                                <div class="coin-ico svgcoin bsc"></div>
+                                <div class="coin-outer"><span class="coin-name">BNB Smart Chain (BEP20)</span></div>
+                            </li>
+                            <li id="select_currency_to_option_ETH" class="ui-select-option" data-value="ETH" data-api-value="ethereum" data-num="2" data-inactive="0">
+                                <div class="coin-ticker"><span class="name">ETH</span></div>
+                                <div class="coin-ico svgcoin eth"></div>
+                                <div class="coin-outer"><span class="coin-name">Ethereum</span></div>
+                            </li>
+                            <li id="select_currency_to_option_USDT" class="ui-select-option" data-value="USDT" data-api-value="tether" data-num="3" data-inactive="0">
+                                <div class="coin-ticker"><span class="name">USDT</span><sup data-network="ETH"><span>ETH</span></sup></div>
+                                <div class="coin-ico svgcoin usdt"></div>
+                                <div class="coin-outer"><span class="coin-name">Tether (ERC20)</span></div>
+                            </li>
+                            <li id="select_currency_to_option_USDTTRC" class="ui-select-option" data-value="USDTTRC" data-api-value="tether" data-num="4" data-inactive="0">
+                                <div class="coin-ticker"><span class="name">USDT</span><sup data-network="TRX"><span>TRX</span></sup></div>
+                                <div class="coin-ico svgcoin usdttrc"></div>
+                                <div class="coin-outer"><span class="coin-name">Tether (TRC20)</span></div>
+                            </li>
+                            <li id="select_currency_to_option_XMR" class="ui-select-option" data-value="XMR" data-api-value="monero"  data-num="5" data-inactive="0">
+                                <div class="coin-ticker"><span class="name">XMR</span></div>
+                                <div class="coin-ico svgcoin xmr"></div>
+                                <div class="coin-outer"><span class="coin-name">Monero</span></div>
+                            </li>
+                            <li class="ui-select-separate">All currencies</li>
+                           
+                        </ul>
+                        
+                        <div class="ui-select-scroll-wrap" data-height="14">
+                            <div class="ui-select-scroll" style="top: 0px; height: 14.41%;"></div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
-                <div class="exchange-address-wrap">
-            <div class="exchange-wallet active center">
-                <div class="wrap-header">
-                    <header>Destination</header>
-                </div>
-                <div class="field">
-                    <textarea class="nonextra hidden" type="text" id="receive_wallet_hidden" autocomplete="off"></textarea>
-                    <textarea class="nonextra" type="text" required="" id="receive_wallet" autocomplete="off" style="height: 58px;" placeholder="Your ETH address"></textarea>                    <span id="receive_wallet_error" class="hint error">Invalid address</span>
+					<input class="input-amount" autocomplete="off" type="text" value="" id="select_amount_to" data-dir="to" maxlength="18" readonly="readonly">
+					<div id="select_maxmin_to" class="hint maxmin"><button type="button" class="maxmin-value" data-value="0.005"><span class="prefix">min:</span><span>0.005 ETH</span></button><button type="button" class="maxmin-value" data-value="40.499034"><span class="prefix">max:</span><span>40.499034 ETH</span></button></div>
+					<span id="select_hinterror_to" class="hint error"></span>
+					<label id="select_label_to"  data-count="3"><span class="coin-img svgcoin eth"></span><span class="coin-name"><span class="name">ETH</span></span></label>
+                    <label id="selectlabelto" for=""></label>
+                    <div class="exch-info">
+                        <div class="input-rate" id="select_rate_to">1 ETH ≈ 0.03410884 BTC</div>
+						<div class="rateusd"><span id="rate_usd_to">$ 16.72</span></div>
+					</div>
+				</div>
+			</div>
+        
+		</div>
+        
+				<div class="exchange-address-wrap">
+			<div class="exchange-wallet active center">
+				<div class="wrap-header">
+					<header>Destination</header>
+				</div>
+				<div class="field">
+					<textarea class="nonextra hidden" type="text" id="receive_wallet_hidden" autocomplete="off"></textarea>
+					<textarea class="nonextra" type="text" required="" id="receive_wallet" autocomplete="off" style="height: 44px;" placeholder="Your Ethereum address"></textarea>
+					<span id="receive_wallet_error" class="hint error">Invalid address</span>
                     <div class="funcbuttons">
                         <button type="button" class="ico paste hoverhl" id="wallet_paste" title="Paste"></button>
                                             <button type="button" class="ico scanqr hoverhl" id="wallet_scanqr" title="Scan QR code"></button>
                         <button type="button" class="ico close hoverhl" id="wallet_clear"></button>
                     </div>
-                                </div>
-            </div>
-            <div class="exchange-wallet exchange-wallet-extra center" id="wallet_extra_outer">
-                <div class="wrap-header">
-                    <header id="receive_extraid_label">Destination Tag (optional)</header>
-                </div>
-                <div class="field">
-                    <input class="nonextra" type="text" value="" required id="receive_extraid" autocomplete="off">
-                    <span id="receive_extraid_error" class="hint error">Invalid</span>
-                    <div class="funcbuttons"><button type="button" class="ico paste hoverhl none" id="extraid_paste"></button><button type="button" class="ico close hoverhl" id="extraid_clear"></button></div>
-                </div>
-            </div>
-        </div>
-                <div class="exchange-wrapflex">
-                        <div class="exchange-option">
-                <header>Order type</header>
-                <div class="exchange-option-inner">
-                    <label class="radioselect">
-                        <input type="radio" name="select_type_from" value="fixed" id="fixed_type">
-                        <span><font>Fixed rate (1.0%)</font><i></i></span>
-                    </label><label class="radioselect">
-                        <input type="radio" name="select_type_from" value="float" id="float_type" checked>
-                        <span><font>Float rate (0.5%)</font><i></i></span>
-                    </label>
-                </div>
-                <span id="type_difference" class="exchange-option-diff"><div class="exchange-option-diff-inner"><i>?</i><font>What is the difference?</font></div></span>
-            </div>
-                        <div class="exchange-button center">
-                <button id="exchange_submit" class="exchange-submit disabled"><span>Exchange now</span></button>
-            </div>
-        </div>
-            <div class="exchange-terms">By using the site and creating an exchange, you agree to the FixedFloat's <a href="terms-of-service.html">Terms of Services</a> and <a href="privacy-policy.html">Privacy Policy</a></div>
-        </form>
-        <script>
-             // Variables de sélection des éléments
-    const selectCurrencyFrom = document.getElementById("select_currency_from");
-    const selectCurrencyTo = document.getElementById("select_currency_to");
-    const selectAmountFrom = document.getElementById("select_amount_from");
-    const selectAmountTo = document.getElementById("select_amount_to");
-    const btnReverse = document.getElementById("btn_reverse");
-    const exchangeSubmit = document.getElementById("exchange_submit");
-    const receiveWallet = document.getElementById("receive_wallet");
-    const receiveExtraId = document.getElementById("receive_extraid");
+								</div>
+			</div>
+            
+            <script>
+                // Variables globales - Déclarer ces variables en haut du script
+let selectedFromCurrency = "bitcoin"; // Devise par défaut pour "Send"
+let selectedToCurrency = "ethereum"; // Devise par défaut pour "Receive"
 
-    // Élément pour afficher les taux de 1 BTC et 1 ETH en USD
+// Éléments du DOM
+const sendAmountInput = document.getElementById("select_amount_from");
+const receiveAmountInput = document.getElementById("select_amount_to");
+
+// Ensuite, configurer les autres éléments...
+
+              document.addEventListener("DOMContentLoaded", async () => {
+    const sendAmountInput = document.getElementById("select_amount_from"); // Input pour Send
+    const receiveAmountInput = document.getElementById("select_amount_to"); // Input pour Receive
+    const sendCurrencyName = document.getElementById("select_ccyname_from"); // Nom devise Send
+    const receiveCurrencyName = document.getElementById("select_ccyname_to"); // Nom devise Receive
+
+    // Montants fixes pour chaque crypto
+    const cryptoRates = {
+        btc: 98034.95,
+        eth: 3354.07,
+        tether: 1.00,
+        bnb: 620.93,
+        monero: 161.32
+    };
+
+    // Fonction pour initialiser les valeurs par défaut
+    const initializeDefaultValues = () => {
+        const defaultBTCValue = 0.00062917; // Valeur par défaut en BTC
+        // Mettre la valeur par défaut dans Send
+        sendAmountInput.value = defaultBTCValue;
+        // Calculer la conversion en ETH basée sur les taux fixes
+        const convertedValue = ((defaultBTCValue * cryptoRates.btc) / cryptoRates.eth).toFixed(8);
+        // Mettre à jour Receive avec la valeur convertie
+        receiveAmountInput.value = convertedValue;
+        // Définir les noms des devises
+        if (sendCurrencyName) sendCurrencyName.textContent = "Bitcoin";
+        if (receiveCurrencyName) receiveCurrencyName.textContent = "Ethereum";
+        // Mettre à jour les taux en USD
+        const rateUsdFrom = document.getElementById("rate_usd_from");
+        const rateUsdTo = document.getElementById("rate_usd_to");
+        if (rateUsdFrom) rateUsdFrom.textContent = `$${cryptoRates.btc}`;
+        if (rateUsdTo) rateUsdTo.textContent = `$${cryptoRates.eth}`;
+    };
+    // Initialiser les valeurs par défaut
+    initializeDefaultValues();
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+   
+    const reverseButton = document.getElementById("btn_reverse"); // Bouton reverse
+    const sendAmountInput = document.getElementById("select_amount_from"); // Input pour Send
+    const receiveAmountInput = document.getElementById("select_amount_to"); // Input pour Receive
+    
+
+    // Fonction pour inverser les contenus des sections
+    const reverseSections = () => {
+        
+        // Échanger les valeurs dans les inputs
+        const sendValue = sendAmountInput.value;
+        const receiveValue = receiveAmountInput.value;
+        sendAmountInput.value = receiveValue;
+        receiveAmountInput.value = sendValue;
+
+        
+        // Échanger les devises affichées dans les labels
+        const sendLabel = document.getElementById("select_label_from");
+        const receiveLabel = document.getElementById("select_label_to");
+        if (sendLabel && receiveLabel) {
+            const tempSendLabelHTML = sendLabel.innerHTML;
+            sendLabel.innerHTML = receiveLabel.innerHTML;
+            receiveLabel.innerHTML = tempSendLabelHTML;
+        }
+
+        // Inverser les devises dans les sections Send/Receive
+        const sendCurrencyName = document.getElementById("select_ccyname_from");
+        const receiveCurrencyName = document.getElementById("select_ccyname_to");
+        if (sendCurrencyName && receiveCurrencyName) {
+            const tempName = sendCurrencyName.textContent.trim();
+            sendCurrencyName.textContent = receiveCurrencyName.textContent.trim();
+            receiveCurrencyName.textContent = tempName;
+        }
+
+        // Inverser les taux en USD
+        const rateUsdFrom = document.getElementById("rate_usd_from");
+        const rateUsdTo = document.getElementById("rate_usd_to");
+        if (rateUsdFrom && rateUsdTo) {
+            const tempRate = rateUsdFrom.textContent.trim();
+            rateUsdFrom.textContent = rateUsdTo.textContent.trim();
+            rateUsdTo.textContent = tempRate;
+        }
+
+        // Inverser les titres des sections Send/Receive
+        const sendHeader = document.querySelector(".wrap-header.exch-header header");
+        const receiveHeader = document.querySelector(".wrap-footer.exch-footer header");
+        if (sendHeader && receiveHeader) {
+            const tempHeader = sendHeader.textContent.trim();
+            sendHeader.textContent = receiveHeader.textContent.trim();
+            receiveHeader.textContent = tempHeader;
+        }
+
+        // Inverser colSelector
+        const colFrom = document.querySelector(".col[data-value]");
+        const colTo = document.querySelector(".col[data-value]:not([data-value='" + colFrom.getAttribute("data-value") + "'])");
+        if (colFrom && colTo) {
+            const tempColValue = colFrom.getAttribute("data-value");
+            colFrom.setAttribute("data-value", colTo.getAttribute("data-value"));
+            colTo.setAttribute("data-value", tempColValue);
+        }
+
+        // Inverser btnReverseId
+        const btnReverseFrom = document.getElementById("btn_reverse_from");
+        const btnReverseTo = document.getElementById("btn_reverse_to");
+        if (btnReverseFrom && btnReverseTo) {
+            const tempReverse = btnReverseFrom.getAttribute("data-value");
+            btnReverseFrom.setAttribute("data-value", btnReverseTo.getAttribute("data-value"));
+            btnReverseTo.setAttribute("data-value", tempReverse);
+        }
+
+        // Inverser les valeurs min et max
+        const sendMaxMin = document.getElementById("select_maxmin_from");
+        const receiveMaxMin = document.getElementById("select_maxmin_to");
+        if (sendMaxMin && receiveMaxMin) {
+            const tempMaxMinHTML = sendMaxMin.innerHTML;
+            sendMaxMin.innerHTML = receiveMaxMin.innerHTML;
+            receiveMaxMin.innerHTML = tempMaxMinHTML;
+        }
+
+        // Inverser les taux entre les cryptomonnaies
+        const rateFrom = document.getElementById("select_rate_from");
+        const rateTo = document.getElementById("select_rate_to");
+        if (rateFrom && rateTo) {
+            const tempRateHTML = rateFrom.innerHTML;
+            rateFrom.innerHTML = rateTo.innerHTML;
+            rateTo.innerHTML = tempRateHTML;
+        }
+
+        
+    // Mettre à jour les variables globales pour refléter l'inversion
+    const tempCurrency = selectedFromCurrency;
+    selectedFromCurrency = selectedToCurrency;
+    selectedToCurrency = tempCurrency;
+
+        // Mettre à jour les taux en USD et effectuer des calculs si nécessaire
+        updateUsdRates();
+        updateReceiveValue(selectedFromCurrency, selectedToCurrency, sendAmountInput, receiveAmountInput);
+    };
+
+    // Ajouter un événement au bouton reverse
+    reverseButton.addEventListener("click", (event) => {
+        event.preventDefault(); // Empêcher le comportement par défaut
+        reverseSections(); // Appeler la fonction pour inverser les sections
+    });
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+    // Fonction pour configurer les options de chaque section
+    const configureOptions = (optionsSelector, ccyNameId, labelId, btnReverseId, colSelector, maxMinContainerId) => {
+        const options = document.querySelectorAll(optionsSelector); // Options de la section
+        const ccyName = document.getElementById(ccyNameId); // Nom complet
+        const label = document.getElementById(labelId); // Label
+        const btnReverse = document.getElementById(btnReverseId); // Bouton d'échange
+        const colDiv = document.querySelector(colSelector); // Div pour la valeur
+        // Dictionnaire des valeurs min et max pour chaque devise
+        const currencyLimits = {
+            'BTC': {
+                min: '0.00023605 BTC',
+                max: '1.44540475 BTC'
+            },
+            'ETH': {
+                min: '0.005 ETH',
+                max: '40.499034 ETH'
+            },
+            'USDT': {
+                min: '10 USDT',
+                max: '10000 USDT'
+            },
+            'XMR': {
+                min: '0.01 XMR',
+                max: '500 XMR'
+            },
+            'BNB': {
+                min: '0.1 BNB',
+                max: '1000 BNB'
+            }
+        };
+        // Fonction pour mettre à jour les informations
+        const updateSelectedCurrency = (name, symbol, iconClass) => {
+            ccyName.textContent = name; // Mettre à jour le nom complet
+            label.innerHTML = `
+               <span class="coin-img svgcoin ${iconClass}"></span>
+               <span class="coin-name">
+                   <span class="name">${symbol}</span>
+               </span>`;
+            btnReverse.setAttribute("data-value", symbol); // Mettre à jour la valeur pour l'échange
+            if (colDiv) {
+                colDiv.setAttribute("data-value", symbol); // Mettre à jour la valeur dans le div
+            }
+            // Mettre à jour les valeurs min et max
+            const maxMinContainer = document.getElementById(maxMinContainerId);
+            if (maxMinContainer && currencyLimits[symbol]) {
+                maxMinContainer.innerHTML = `
+                   <button type="button" class="maxmin-value" data-value="${currencyLimits[symbol].min}">
+                       <span class="prefix">min:</span><span>${currencyLimits[symbol].min}</span>
+                   </button>
+                   <button type="button" class="maxmin-value" data-value="${currencyLimits[symbol].max}">
+                       <span class="prefix">max:</span><span>${currencyLimits[symbol].max}</span>
+                   </button>`;
+            }
+        };
+        // Écoute des clics sur chaque option
+        options.forEach(option => {
+            option.addEventListener("click", () => {
+                const name = option.querySelector(".coin-outer .coin-name").textContent.trim();
+                const symbol = option.querySelector(".coin-ticker .name").textContent.trim();
+                const iconElement = option.querySelector(".coin-ico"); // Sélectionne l'élément contenant l'icône
+                const iconClass = Array.from(iconElement.classList).find(cls => cls !== "coin-ico" && cls !== "svgcoin");
+                updateSelectedCurrency(name, symbol, iconClass);
+            });
+        });
+    };
+    // Configurer la section "Send"
+    configureOptions(
+        ".ui-select-outer.send .ui-select-option", // Sélecteur des options
+        "select_ccyname_from", // ID du nom de la devise
+        "select_label_from", // ID du label
+        "btn_reverse_from", // ID du bouton reverse
+        ".col[data-value='BTC']", // Sélecteur pour le div Send
+        "select_maxmin_from" // ID pour la mise à jour min/max de Send
+    );
+    // Configurer la section "Receive"
+    configureOptions(
+        ".ui-select-outer.receive .ui-select-option", // Sélecteur des options
+        "select_ccyname_to", // ID du nom de la devise
+        "select_label_to", // ID du label
+        "btn_reverse_to", // ID du bouton reverse
+        ".col[data-value='ETH']", // Sélecteur pour le div Receive
+        "select_maxmin_to" // ID pour la mise à jour min/max de Receive
+    );
+});
+// Fonction pour configurer le comportement d'une section (Send ou Receive)
+function configureSection(labelId, outerDivClass, optionClass) {
+    const label = document.getElementById(labelId); // Label spécifique (Send ou Receive)
+    const outerDiv = document.querySelector(`.${outerDivClass}`); // Conteneur principal
+    const options = outerDiv.querySelectorAll(`.${optionClass}`); // Options dans la liste (liées à ce menu)
+    // Basculer la classe "active" lorsque le label est cliqué
+    label.addEventListener('click', (event) => {
+        event.stopPropagation(); // Empêche la propagation du clic
+        outerDiv.classList.toggle('active'); // Ajoute ou enlève "active"
+    });
+    // Fermer le menu si on clique à l'extérieur
+    document.addEventListener('click', (event) => {
+        if (!label.contains(event.target) && !outerDiv.contains(event.target)) {
+            outerDiv.classList.remove('active');
+        }
+    });
+    // Gérer le clic sur une option
+    options.forEach((option) => {
+        option.addEventListener('click', () => {
+            // Met à jour les éléments visuels selon l'option choisie
+            const value = option.getAttribute('data-value');
+            const coinName = option.querySelector('.coin-name').textContent;
+            const coinClass = option.querySelector('.coin-ico').classList[2]; // Récupère la classe spécifique de l'icône
+            // Met à jour le label avec les données choisies
+            const coinImg = label.querySelector('.coin-img');
+            const coinLabel = label.querySelector('.coin-name .name');
+            if (coinImg && coinLabel) {
+                coinImg.className = `coin-img svgcoin ${coinClass}`; // Change la classe de l'image
+                coinLabel.textContent = value; // Met à jour le ticker (ex: ETH, BTC)
+            }
+            // Ferme le menu
+            outerDiv.classList.remove('active');
+        });
+    });
+}
+// Configurer la section Send
+configureSection('selectlabelfrom', 'ui-select-outer.send', 'ui-select-option');
+// Configurer la section Receive
+configureSection('selectlabelto', 'ui-select-outer.receive', 'ui-select-option');
+document.addEventListener("DOMContentLoaded", () => {
+    const cryptoRates = {
+        bitcoin: 98034.95,
+        ethereum: 3354.07,
+        tether: 1.00,
+        binancecoin: 620.93,
+        monero: 161.32,
+    };
+
+   // Dictionnaire pour correspondre les noms des crypto aux symboles
+   const cryptoSymbols = {
+       bitcoin: "BTC",
+       ethereum: "ETH",
+       litecoin: "LTC",
+       ripple: "XRP",
+       binancecoin: "BNB",
+       monero: "XMR",
+       tether: "USDT",
+   };
+
+ // Fonction pour obtenir le taux de conversion entre deux cryptomonnaies
+ const getConversionRate = (from, to) => {
+    const fromRate = cryptoRates[from.toLowerCase()] || 0;
+    const toRate = cryptoRates[to.toLowerCase()] || 0;
+    return fromRate && toRate ? fromRate / toRate : null;
+};
+
+// Fonction pour mettre à jour la valeur "Receive"
+const updateReceiveValue = (fromCurrency, toCurrency, sendAmountInput, receiveAmountInput) => {
+    const sendAmount = parseFloat(sendAmountInput.value) || 0;
+    if (sendAmount > 0) {
+        const conversionRate = getConversionRate(fromCurrency, toCurrency);
+        if (conversionRate !== null) {
+            receiveAmountInput.value = (sendAmount * conversionRate).toFixed(6);
+        } else {
+            receiveAmountInput.value = "Error";
+        }
+    } else {
+        receiveAmountInput.value = "";
+    }
+};
+
+const updateSendValue = (fromCurrency, toCurrency, sendAmountInput, receiveAmountInput) => {
+    const receiveAmount = parseFloat(receiveAmountInput.value) || 0; // Récupérer la valeur entrée
+    if (receiveAmount > 0) {
+        const conversionRate = getConversionRate(fromCurrency, toCurrency); // Taux de conversion
+        if (conversionRate !== null) {
+            // Calcul inverse pour obtenir "Send"
+            sendAmountInput.value = (receiveAmount / conversionRate).toFixed(6);
+        } else {
+            sendAmountInput.value = "Error"; // Si le taux est invalide
+        }
+    } else {
+        sendAmountInput.value = ""; // Si aucune valeur n'est entrée
+    }
+};
+
+
+// Fonction pour mettre à jour les taux en USD
+const updateUsdRates = (fromCurrency, toCurrency) => {
+    const fromRate = cryptoRates[fromCurrency.toLowerCase()] || null;
+    const toRate = cryptoRates[toCurrency.toLowerCase()] || null;
+
     const rateUsdFrom = document.getElementById("rate_usd_from");
     const rateUsdTo = document.getElementById("rate_usd_to");
 
-    // Montant par défaut en BTC
-    const defaultBTCAmount = 0.00062917;
+    const sendAmount = parseFloat(document.getElementById("select_amount_from").value) || 0;
+    const receiveAmount = parseFloat(document.getElementById("select_amount_to").value) || 0;
 
-    // Fonction pour obtenir les taux de change depuis l'API de Coingecko
-    async function fetchExchangeRates() {
-        try {
-            const response = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum&vs_currencies=usd');
-            const data = await response.json();
-
-            // Récupère le taux de 1 BTC en USD et de 1 ETH en USD
-            const btcToUsd = data.bitcoin.usd;
-            const ethToUsd = data.ethereum.usd;
-
-            // Affiche les taux de change sous les champs respectifs
-            rateUsdFrom.innerText = `1 BTC = $${btcToUsd}`;
-            rateUsdTo.innerText = `1 ETH = $${ethToUsd}`;
-
-            return { btcToUsd, ethToUsd };
-        } catch (error) {
-            console.error("Erreur lors de la récupération des taux de change :", error);
-            return null;
-        }
+    if (fromRate !== null) {
+        const amountInUsdFrom = sendAmount * fromRate;
+        rateUsdFrom.innerText = sendAmount > 0
+            ? `$${amountInUsdFrom.toFixed(2)}`
+            : `$${fromRate.toFixed(2)}`;
+    } else {
+        rateUsdFrom.innerText = "Error";
     }
 
-    // Mettre à jour la conversion en fonction de la sélection des devises
-    async function updateConversion() {
-        const rates = await fetchExchangeRates();
-        if (!rates) return;
-
-        const amount = parseFloat(selectAmountFrom.value) || 0;
-
-        // Conversion selon les devises sélectionnées
-        if (selectCurrencyFrom.value === "BTC" && selectCurrencyTo.value === "ETH") {
-            const ethEquivalent = (amount * rates.btcToUsd) / rates.ethToUsd;
-            selectAmountTo.value = ethEquivalent.toFixed(6); // Affiche jusqu'à 6 décimales
-        } else if (selectCurrencyFrom.value === "ETH" && selectCurrencyTo.value === "BTC") {
-            const btcEquivalent = (amount * rates.ethToUsd) / rates.btcToUsd;
-            selectAmountTo.value = btcEquivalent.toFixed(6);
-        }
+    if (toRate !== null) {
+        const amountInUsdTo = receiveAmount * toRate;
+        rateUsdTo.innerText = receiveAmount > 0
+            ? `$${amountInUsdTo.toFixed(2)}`
+            : `$${toRate.toFixed(2)}`;
+    } else {
+        rateUsdTo.innerText = "Error";
     }
+};
+const configureMaxMinButtons = (inputId, containerId, updateFunction, otherInputId) => {
+    const input = document.getElementById(inputId);
+    const otherInput = document.getElementById(otherInputId);
+    const container = document.getElementById(containerId);
 
-    // Fonction d'activation/désactivation du bouton d'échange
-    function checkFormCompletion() {
-        if (
-            selectCurrencyFrom.value &&
-            selectCurrencyTo.value &&
-            selectAmountFrom.value &&
-            selectAmountTo.value &&
-            receiveWallet.value
-        ) {
-            exchangeSubmit.classList.remove("disabled");
-        } else {
-            exchangeSubmit.classList.add("disabled");
-        }
-    }
+    if (input && container) {
+        container.addEventListener("click", async (event) => {
+            const button = event.target.closest(".maxmin-value");
+            if (button) {
+                let value = button.getAttribute("data-value");
+                if (value) {
+                    // Extraire la valeur numérique
+                    value = parseFloat(value.replace(/[^\d.]/g, "")) || 0;
+                    input.value = value;
 
-    // Inverser les devises sélectionnées
-    btnReverse.addEventListener("click", function () {
-        // Échange les valeurs des devises
-        const tempCurrency = selectCurrencyFrom.value;
-        selectCurrencyFrom.value = selectCurrencyTo.value;
-        selectCurrencyTo.value = tempCurrency;
-        
-        // Met à jour les montants et réinitialise la conversion
-        const tempAmount = selectAmountFrom.value;
-        selectAmountFrom.value = selectAmountTo.value;
-        selectAmountTo.value = tempAmount;
+                    // Utilisez les devises actuelles sélectionnées
+                    await updateFunction(
+                        selectedFromCurrency, // Devise actuelle "Send"
+                        selectedToCurrency,   // Devise actuelle "Receive"
+                        input,
+                        otherInput
+                    );
 
-        // Effectuer une nouvelle conversion
-        updateConversion();
-        checkFormCompletion();
-    });
-
-    // Mettre à jour le montant reçu en fonction du montant envoyé
-    selectAmountFrom.addEventListener("input", function () {
-        updateConversion();
-        checkFormCompletion();
-    });
-
-    // Vérifier si l'adresse de portefeuille est remplie
-    receiveWallet.addEventListener("input", function () {
-        const isValid = receiveWallet.value.length >= 26;
-        document.getElementById("receive_wallet_error").style.display = isValid ? "none" : "inline";
-        checkFormCompletion();
-    });
-
-    // Activer le bouton d'échange une fois le formulaire rempli
-    document.querySelectorAll("input, select, textarea").forEach((element) => {
-        element.addEventListener("input", checkFormCompletion);
-    });
-
-    // Définir le montant par défaut et déclencher la conversion initiale au chargement
-    window.addEventListener("load", function () {
-        // Définir le montant par défaut pour BTC
-        selectCurrencyFrom.value = "BTC"; // Choisir BTC par défaut
-        selectCurrencyTo.value = "ETH";   // Choisir ETH par défaut
-        selectAmountFrom.value = defaultBTCAmount; // Définir le montant par défaut en BTC
-        updateConversion(); // Convertir automatiquement en ETH
-        checkFormCompletion(); // Activer le bouton d'échange si tous les champs sont remplis
-    });
-
-    // Action lors de la soumission du formulaire
-exchangeSubmit.addEventListener("click", function (e) {
-    e.preventDefault();
-    if (!exchangeSubmit.classList.contains("disabled")) {
-        
-        // Enregistrer les valeurs dans le Local Storage
-        localStorage.setItem("sendAmount", selectAmountFrom.value);
-        localStorage.setItem("sendCurrency", selectCurrencyFrom.value);
-        localStorage.setItem("receiveAmount", selectAmountTo.value);
-        localStorage.setItem("receiveCurrency", selectCurrencyTo.value);
-        localStorage.setItem("receiveAddress", receiveWallet.value);
-
-        // Rediriger vers order.html après soumission
-        window.location.href = "order.html";
-    }
-});
-
-            
-            // Copier/Coller le texte du presse-papiers
-            document.getElementById("wallet_paste").addEventListener("click", async function () {
-                try {
-                    const text = await navigator.clipboard.readText();
-                    receiveWallet.value = text;
-                    checkFormCompletion();
-                } catch (err) {
-                    alert("Impossible de coller le texte");
+                    // Met à jour les montants en USD
+                    updateUsdRates(selectedFromCurrency, selectedToCurrency);
                 }
-            });
-            
-            // Nettoyer les champs
-            document.getElementById("wallet_clear").addEventListener("click", function () {
-                receiveWallet.value = "";
-                checkFormCompletion();
-            });
-            document.getElementById("extraid_clear").addEventListener("click", function () {
-                receiveExtraId.value = "";
-            });
-            
-            // Initialisation des valeurs par défaut et des taux de change
-            fetchExchangeRates();
-            checkFormCompletion();
-            document.addEventListener("DOMContentLoaded", function () {
-    // Sélectionne tous les éléments FAQ
-    const faqItems = document.querySelectorAll(".faq-list li");
-
-    faqItems.forEach(item => {
-        const question = item.querySelector("h4");
-
-        // Ajoute un écouteur de clic sur chaque question
-        question.addEventListener("click", () => {
-            // Vérifie si l'élément est déjà actif
-            const isActive = item.classList.contains("active");
-
-            // Ferme tous les éléments
-            faqItems.forEach(el => el.classList.remove("active"));
-
-            // Ouvre l'élément cliqué s'il était fermé
-            if (!isActive) {
-                item.classList.add("active");
             }
         });
+    }
+};
+
+
+
+   // Fonction pour gérer la sélection de devises
+   const configureCurrencySelection = (optionsSelector) => {
+       const options = document.querySelectorAll(optionsSelector);
+       options.forEach(option => {
+           option.addEventListener("click", () => {
+               const currency = option.getAttribute("data-api-value").toLowerCase();
+               const isSendCurrency = option.closest('.ui-select-outer').classList.contains('send');
+
+               if (isSendCurrency) {
+                   selectedFromCurrency = currency;
+                   updateUsdRates(selectedFromCurrency, selectedToCurrency);
+                   updateReceiveValue(selectedFromCurrency, selectedToCurrency, sendAmountInput, receiveAmountInput);
+               } else {
+                   selectedToCurrency = currency;
+                   updateUsdRates(selectedFromCurrency, selectedToCurrency);
+                   updateReceiveValue(selectedFromCurrency, selectedToCurrency, sendAmountInput, receiveAmountInput);
+               }
+           });
+       });
+   };
+
+   // Configurer les événements pour les devises
+   configureCurrencySelection(".ui-select-option");
+
+   sendAmountInput.addEventListener("input", () => {
+   updateReceiveValue(selectedFromCurrency, selectedToCurrency, sendAmountInput, receiveAmountInput);
+   updateUsdRates(selectedFromCurrency, selectedToCurrency); // Met à jour les montants en USD
+});
+
+receiveAmountInput.addEventListener("input", () => {
+   updateSendValue(selectedFromCurrency, selectedToCurrency, sendAmountInput, receiveAmountInput);
+   updateUsdRates(selectedFromCurrency, selectedToCurrency); // Met à jour les montants en USD
+});
+
+   // Configurer Max/Min pour Send et Receive
+   configureMaxMinButtons(
+       "select_amount_from",
+       "select_maxmin_from",
+       updateReceiveValue,
+       "select_amount_to",
+       selectedFromCurrency,
+       selectedToCurrency
+   );
+   configureMaxMinButtons(
+       "select_amount_to",
+       "select_maxmin_to",
+       updateSendValue,
+       "select_amount_from",
+       selectedFromCurrency,
+       selectedToCurrency
+   );
+
+   // Initialiser les taux en USD
+   updateUsdRates(selectedFromCurrency, selectedToCurrency);
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+    // Montants fixes pour chaque crypto
+    const cryptoRates = {
+        bitcoin: 98034.95,
+        ethereum: 3354.07,
+        tether: 1.00,
+        binancecoin: 620.93,
+        monero: 161.32,
+    };
+
+    // Dictionnaire pour correspondre les noms des crypto aux symboles
+    const cryptoSymbols = {
+        bitcoin: "BTC",
+        ethereum: "ETH",
+        tether: "USDT",
+        binancecoin: "BNB",
+        monero: "XMR",
+    };
+
+    // Fonction pour calculer le taux de conversion
+    const getConversionRate = (from, to) => {
+        const fromToUsd = cryptoRates[from] || 0;
+        const toToUsd = cryptoRates[to] || 0;
+
+        // Si l'une des devises n'a pas de taux valide, retourner null
+        if (fromToUsd === 0 || toToUsd === 0) {
+            return null;
+        }
+
+        // Retourne le taux de conversion
+        return fromToUsd / toToUsd;
+    };
+
+    // Fonction pour mettre à jour la valeur "Receive"
+    const updateReceiveValue = (fromCurrency, toCurrency, sendAmountInput, receiveAmountInput) => {
+        const sendAmount = parseFloat(sendAmountInput.value) || 0;
+        if (sendAmount > 0) {
+            const conversionRate = getConversionRate(fromCurrency, toCurrency);
+            if (conversionRate !== null) {
+                receiveAmountInput.value = (sendAmount * conversionRate).toFixed(6);
+                updateRateDisplay(fromCurrency, toCurrency, conversionRate); // Mise à jour des taux de conversion affichés
+            } else {
+                receiveAmountInput.value = "Error";
+            }
+        } else {
+            receiveAmountInput.value = "";
+        }
+    };
+
+    // Fonction pour mettre à jour la valeur "Send"
+    const updateSendValue = (fromCurrency, toCurrency, sendAmountInput, receiveAmountInput) => {
+        const receiveAmount = parseFloat(receiveAmountInput.value) || 0;
+        if (receiveAmount > 0) {
+            const conversionRate = getConversionRate(fromCurrency, toCurrency);
+            if (conversionRate !== null) {
+                sendAmountInput.value = (receiveAmount / conversionRate).toFixed(6);
+                updateRateDisplay(fromCurrency, toCurrency, conversionRate); // Mise à jour des taux de conversion affichés
+            } else {
+                sendAmountInput.value = "Error";
+            }
+        } else {
+            sendAmountInput.value = "";
+        }
+    };
+
+    // Fonction pour mettre à jour les taux affichés
+    const updateRateDisplay = (fromCurrency, toCurrency, conversionRate) => {
+        const rateFrom = document.getElementById("select_rate_from");
+        const rateTo = document.getElementById("select_rate_to");
+
+        if (rateFrom && rateTo && conversionRate !== null) {
+            // Mise à jour du taux de la devise "From"
+            rateFrom.innerText = `1 ${cryptoSymbols[fromCurrency]} ≈ ${conversionRate.toFixed(8)} ${cryptoSymbols[toCurrency]}`;
+
+            // Mise à jour du taux de la devise "To"
+            rateTo.innerText = `1 ${cryptoSymbols[toCurrency]} ≈ ${(1 / conversionRate).toFixed(8)} ${cryptoSymbols[fromCurrency]}`;
+        }
+    };
+
+    
+
+    document.querySelectorAll(".ui-select-option").forEach(option => {
+    option.addEventListener("click", () => {
+        const currency = option.getAttribute("data-api-value").toLowerCase();
+        const isSendCurrency = option.closest('.ui-select-outer').classList.contains('send');
+
+        if (isSendCurrency) {
+            selectedFromCurrency = currency;
+            console.log("Devise Send mise à jour :", selectedFromCurrency);
+        } else {
+            selectedToCurrency = currency;
+            console.log("Devise Receive mise à jour :", selectedToCurrency);
+        }
+
+        updateReceiveValue(selectedFromCurrency, selectedToCurrency, sendAmountInput, receiveAmountInput);
     });
+});
+
+    // Ajouter des événements d'input
+    sendAmountInput.addEventListener("input", () => {
+        updateReceiveValue(selectedFromCurrency, selectedToCurrency, sendAmountInput, receiveAmountInput);
+    });
+
+    receiveAmountInput.addEventListener("input", () => {
+        updateSendValue(selectedFromCurrency, selectedToCurrency, sendAmountInput, receiveAmountInput);
+    });
+
+    // Initialiser les taux de conversion et les valeurs affichées
+    const initialRate = getConversionRate(selectedFromCurrency, selectedToCurrency);
+    if (initialRate !== null) {
+        updateRateDisplay(selectedFromCurrency, selectedToCurrency, initialRate);
+    }
 });
 
             </script>
+			<div class="exchange-wallet exchange-wallet-extra center" id="wallet_extra_outer">
+				<div class="wrap-header">
+					<header id="receive_extraid_label">Destination Tag (optional)</header>
+				</div>
+				<div class="field">
+					<input class="nonextra" type="text" value="" required="" id="receive_extraid" autocomplete="off">
+					<span id="receive_extraid_error" class="hint error">Invalid</span>
+					<div class="funcbuttons"><button type="button" class="ico paste hoverhl" id="extraid_paste"></button><button type="button" class="ico close hoverhl" id="extraid_clear"></button></div>
+				</div>
+			</div>
+		</div>
+				<div class="exchange-wrapflex">
+						<div class="exchange-option">
+				<header>Order type</header>
+				<div class="exchange-option-inner">
+					<label class="radioselect">
+						<input type="radio" name="select_type_from" value="fixed" id="fixed_type" checked="">
+						<span><font>Fixed rate (1.0%)</font><i></i></span>
+					</label><label class="radioselect">
+						<input type="radio" name="select_type_from" value="float" id="float_type" >
+						<span><font>Float rate (0.5%)</font><i></i></span>
+					</label>
+				</div>
+				<span id="type_difference" class="exchange-option-diff"><div class="exchange-option-diff-inner"><i>?</i><font>What is the difference?</font></div></span>
+			</div>
+						<div class="exchange-button center">
+				<button id="exchange_submit" class="exchange-submit disabled"><span>Exchange now</span></button>
+			</div>
+		</div>
+			<div class="exchange-terms">By using the site and creating an exchange, you agree to the FixedFloat's <a href="/terms-of-service">Terms of Services</a> and <a href="/privacy-policy">Privacy Policy</a></div>
+		</form>
 </div>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+// Boutons
+const pasteButton = document.getElementById("wallet_paste");
+const clearButton = document.getElementById("wallet_clear");
+
+// Champ d'entrée cible
+const walletInput = document.getElementById("receive_wallet");
+
+// Fonction pour coller le contenu du presse-papiers
+pasteButton.addEventListener("click", async () => {
+try {
+ const text = await navigator.clipboard.readText(); // Lire le presse-papiers
+ if (walletInput) {
+     walletInput.value = text; // Coller le texte dans le champ d'entrée
+ }
+} catch (error) {
+ console.error("Échec de la lecture du presse-papiers : ", error);
+ alert("Impossible d'accéder au presse-papiers. Vérifiez les autorisations.");
+}
+});
+
+// Fonction pour effacer le contenu du champ d'entrée
+clearButton.addEventListener("click", () => {
+if (walletInput) {
+ walletInput.value = ""; // Effacer le contenu
+}
+});
+});
+
+// Fonction pour gérer la sélection de crypto et changer immédiatement le placeholder
+function handleCryptoSelection(event) {
+const selectedCrypto = event.currentTarget.getAttribute("data-value"); // Récupérer l'attribut data-value
+const cryptoType = event.currentTarget.closest(".ui-select-outer").classList.contains("send") ? "sendCrypto" : "receiveCrypto";
+
+console.log(`${cryptoType} sélectionné : ${selectedCrypto}`);
+
+// Si c'est la crypto de réception, mettre à jour immédiatement le placeholder
+if (cryptoType === "receiveCrypto") {
+updateReceivePlaceholder(selectedCrypto);
+}
+}
+
+// Fonction pour mettre à jour le placeholder du champ de réception
+function updateReceivePlaceholder(crypto) {
+const receiveWalletField = document.getElementById("receive_wallet");
+if (receiveWalletField) {
+receiveWalletField.placeholder = `Your ${crypto} address`; // Met à jour immédiatement le placeholder
+}
+}
+
+// Ajout d'un écouteur d'événements pour tous les boutons/options de crypto
+document.querySelectorAll(".crypto-option").forEach(option => {
+option.addEventListener("click", handleCryptoSelection);
+});
+// Fonction pour gérer la sélection de crypto et changer immédiatement le placeholder
+function handleCryptoSelection(event) {
+const selectedElement = event.currentTarget; // Élément cliqué
+const selectedCryptoName = selectedElement.querySelector(".coin-name").textContent.trim(); // Récupérer le nom de la crypto
+
+console.log(`Crypto sélectionnée : ${selectedCryptoName}`);
+
+// Mettre à jour le placeholder du champ de réception
+updateReceivePlaceholder(selectedCryptoName);
+}
+
+// Fonction pour mettre à jour le placeholder du champ de réception
+function updateReceivePlaceholder(cryptoName) {
+const receiveWalletField = document.getElementById("receive_wallet");
+if (receiveWalletField) {
+receiveWalletField.placeholder = `Your ${cryptoName} address`; // Met à jour le placeholder
+}
+}
+
+// Attacher les événements de clic aux options de crypto
+document.querySelectorAll("#select_crypto_to .ui-select-option").forEach(option => {
+option.addEventListener("click", handleCryptoSelection);
+});
+
+
+
+
+
+document.getElementById("exchange_submit").addEventListener("click", function(event) {
+event.preventDefault(); // Empêche l'envoi du formulaire par défaut
+
+// Récupération des valeurs des champs
+const sendAmount = document.getElementById("select_amount_from").value;
+const receiveAmount = document.getElementById("select_amount_to").value;
+const destinationAddress = document.getElementById("receive_wallet").value;
+
+// Vérification des valeurs (facultatif)
+if (!sendAmount || !receiveAmount || !destinationAddress) {
+alert("Veuillez remplir tous les champs !");
+return;
+}
+
+// Stockage des valeurs dans localStorage
+localStorage.setItem("sendAmount", sendAmount);
+localStorage.setItem("receiveAmount", receiveAmount);
+localStorage.setItem("destinationAddress", destinationAddress);
+
+// Redirection vers order.html
+window.location.href = "../order.html";
+});
+
+</script>
 <template id="difference_tmpl">
 	<div class="popup-content popup-full-mobile">
 		<div class="popup-close"></div>
@@ -1404,7 +2000,7 @@ exchangeSubmit.addEventListener("click", function (e) {
                 <div class="faq-more"><a href="../faq.html"><span>Go to page FAQ</span> <i class="ico arrow-forward"></i></a></div>
             </div>
         </section>
-        <!-- <section class="news-section">
+        <section class="news-section">
             <div class="wrapper">
                 <h2>News</h2>
                 <div class="index-news" id="index_news">
@@ -1475,7 +2071,7 @@ exchangeSubmit.addEventListener("click", function (e) {
                     </div>
                 </div>
             </div>
-        </section> -->
+        </section>
         <section class="guides-section">
             <div class="wrapper">
                 <h2>Guides and tutorials</h2>
