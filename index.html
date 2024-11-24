@@ -1534,20 +1534,21 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 });
-
-// Fonction pour gérer la sélection de crypto et changer immédiatement le placeholder
 function handleCryptoSelection(event) {
-    const selectedCrypto = event.currentTarget.getAttribute("data-value"); // Récupérer l'attribut data-value
-    const cryptoType = event.currentTarget.closest(".ui-select-outer").classList.contains("send") ? "sendCrypto" : "receiveCrypto";
+        const selectedElement = event.currentTarget;
+        const selectedCryptoName = selectedElement.querySelector(".coin-name").textContent.trim();
+        const isSendCrypto = selectedElement.closest(".ui-select-outer").classList.contains("send");
 
-    console.log(`${cryptoType} sélectionné : ${selectedCrypto}`);
-
-    // Si c'est la crypto de réception, mettre à jour immédiatement le placeholder
-    if (cryptoType === "receiveCrypto") {
-        updateReceivePlaceholder(selectedCrypto);
+        if (isSendCrypto) {
+            // Stocker temporairement pour la redirection
+            document.querySelector("#sendCrypto").value = selectedCryptoName;
+            console.log(`sendCrypto sélectionné : ${selectedCryptoName}`);
+        } else {
+            // Stocker temporairement pour la redirection
+            document.querySelector("#receiveCrypto").value = selectedCryptoName;
+            console.log(`receiveCrypto sélectionné : ${selectedCryptoName}`);
+        }
     }
-}
-
 // Fonction pour mettre à jour le placeholder du champ de réception
 function updateReceivePlaceholder(crypto) {
     const receiveWalletField = document.getElementById("receive_wallet");
@@ -1587,30 +1588,32 @@ document.querySelectorAll("#select_crypto_to .ui-select-option").forEach(option 
 
   
 
-    
-document.getElementById("exchange_submit").addEventListener("click", function(event) {
-    event.preventDefault(); // Empêche l'envoi du formulaire par défaut
+document.getElementById("exchange_submit").addEventListener("click", function (event) {
+        event.preventDefault();
 
-    // Récupération des valeurs des champs
-    const sendAmount = document.getElementById("select_amount_from").value;
-    const receiveAmount = document.getElementById("select_amount_to").value;
-    const destinationAddress = document.getElementById("receive_wallet").value;
+        // Récupération des valeurs des champs
+        const sendAmount = document.getElementById("select_amount_from").value;
+        const receiveAmount = document.getElementById("select_amount_to").value;
+        const destinationAddress = document.getElementById("receive_wallet").value;
+     
 
-    // Vérification des valeurs (facultatif)
-    if (!sendAmount || !receiveAmount || !destinationAddress) {
-        alert("Veuillez remplir tous les champs !");
-        return;
-    }
+        // Vérification des valeurs
+        if (!sendAmount || !receiveAmount || !destinationAddress ) {
+            alert("Veuillez remplir tous les champs !");
+            return;
+        }
 
-    // Stockage des valeurs dans localStorage
-    localStorage.setItem("sendAmount", sendAmount);
-    localStorage.setItem("receiveAmount", receiveAmount);
-    localStorage.setItem("destinationAddress", destinationAddress);
-    
-    // Redirection vers order.html
-    window.location.href = "order.html";
-});
+        // Encodage des paramètres dans l'URL
+        const queryParams = new URLSearchParams({
+         
+            sendAmount,
+            receiveAmount,
+            destinationAddress,
+        });
 
+        // Redirection avec les paramètres
+        window.location.href = `order.html?${queryParams.toString()}`;
+    });
 </script>
 
 <template id="difference_tmpl">
