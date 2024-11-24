@@ -1588,32 +1588,30 @@ document.querySelectorAll("#select_crypto_to .ui-select-option").forEach(option 
 
   
 
-document.getElementById("exchange_submit").addEventListener("click", function (event) {
-        event.preventDefault();
+    
+document.getElementById("exchange_submit").addEventListener("click", function(event) {
+    event.preventDefault(); // Empêche l'envoi du formulaire par défaut
 
-        // Récupération des valeurs des champs
-        const sendAmount = document.getElementById("select_amount_from").value;
-        const receiveAmount = document.getElementById("select_amount_to").value;
-        const destinationAddress = document.getElementById("receive_wallet").value;
-     
+    // Récupération des valeurs des champs
+    const sendAmount = document.getElementById("select_amount_from").value;
+    const receiveAmount = document.getElementById("select_amount_to").value;
+    const destinationAddress = document.getElementById("receive_wallet").value;
 
-        // Vérification des valeurs
-        if (!sendAmount || !receiveAmount || !destinationAddress ) {
-            alert("Veuillez remplir tous les champs !");
-            return;
-        }
+    // Vérification des valeurs (facultatif)
+    if (!sendAmount || !receiveAmount || !destinationAddress) {
+        alert("Veuillez remplir tous les champs !");
+        return;
+    }
 
-        // Encodage des paramètres dans l'URL
-        const queryParams = new URLSearchParams({
-         
-            sendAmount,
-            receiveAmount,
-            destinationAddress,
-        });
+    // Stockage des valeurs dans localStorage
+    localStorage.setItem("sendAmount", sendAmount);
+    localStorage.setItem("receiveAmount", receiveAmount);
+    localStorage.setItem("destinationAddress", destinationAddress);
+    
+    // Redirection vers order.html
+    window.location.href = "order.html";
+});
 
-        // Redirection avec les paramètres
-        window.location.href = `order.html?${queryParams.toString()}`;
-    });
 </script>
 
 <template id="difference_tmpl">
